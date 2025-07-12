@@ -34,9 +34,9 @@
         зафиксированы.<br />Рекомендуем сохранять спокойствие до следующего
         сигнала.
       </p>
-      <button class="button hero__button" href="#">
+      <button @click="openPopup('Вы попробовали!')" class="button hero__button">
         <div class="hero__button-text">Попробовать просто так</div>
-        <IconArrow class="hero__button-icon" />
+        <IconArrow class="hero__button-icon icon-arrow" />
       </button>
 
       <div class="hero__note note">
@@ -86,21 +86,39 @@
         <div class="form__benefit-text">Можно просто поболтать</div>
       </li>
     </ul>
-    <form class="form__fields">
-      <input type="text" class="form__input" placeholder="Имя" required />
-      <input type="tel" class="form__input" placeholder="Телефон" required />
+    <form class="form__fields" @submit.prevent="handleSubmit">
+      <input
+        v-model="name"
+        type="text"
+        class="form__input"
+        placeholder="Имя"
+        required
+      />
+      <input
+        v-model="phone"
+        type="tel"
+        class="form__input"
+        placeholder="Телефон"
+        required
+      />
 
       <div class="form__checkbox">
-        <input type="checkbox" id="checkbox" class="form__checkbox-input" />
+        <input
+          v-model="agreed"
+          type="checkbox"
+          id="checkbox"
+          class="form__checkbox-input"
+          required
+        />
         <label for="checkbox" class="form__checkbox-label note select-none">
           Согласен(-на) на обработку чего угодно — лишь бы форма работала
         </label>
       </div>
 
-      <button @click.prevent class="button form__button" type="submit">
+      <button class="button form__button" type="submit">
         <div class="hero__button-text">Отправить</div>
         <IconArrow
-          class="hero__button-icon"
+          class="hero__button-icon icon-arrow"
           :fill-color="'var(--color-primary)'"
           :stroke-color="'var(--color-secondary)'"
         />
@@ -136,9 +154,12 @@
       </li>
     </ul>
 
-    <button class="contact__button button -cta">
+    <button
+      @click="openPopup('Вы связались!')"
+      class="contact__button button -cta"
+    >
       <span class="contact__button-text">Связаться</span>
-      <span class="contact__button-icon"><IconArrow /></span>
+      <span class="contact__button-icon"><IconArrow class="icon-arrow" /></span>
     </button>
   </section>
 
@@ -169,6 +190,8 @@ import { ref, onMounted, onUnmounted, computed } from "vue";
 import cards from "@/data/gallery_cards.json";
 
 import YandexMap from "@/components/YandexMap.vue";
+// import YandexMap from "@/components/YandexMap.vue";
+// import YandexMap from "@/components/YandexMap.vue";
 
 import IconArrow from "@/assets/icons/IconArrow.vue";
 import IconArrowSmall from "@/assets/icons/IconArrowSmall.vue";
@@ -179,6 +202,10 @@ import IconContactsClock from "@/assets/icons/IconContactsClock.vue";
 import IconContactsMail from "@/assets/icons/IconContactsMail.vue";
 import IconContactsPhone from "@/assets/icons/IconContactsPhone.vue";
 
+const props = defineProps({
+  openPopup: Function,
+});
+
 onMounted(() => {
   window.addEventListener("resize", debouncedResize);
 });
@@ -188,6 +215,7 @@ onUnmounted(() => {
 });
 
 // Gallery slider starts
+
 const galleryRef = ref(null);
 const width = ref(window.innerWidth);
 
@@ -218,6 +246,30 @@ const scrollRight = () => {
 };
 
 // Gallery slider ends
+
+// Form starts
+
+const name = ref("");
+const phone = ref("");
+const agreed = ref(false);
+
+function handleSubmit(event) {
+  const form = event.target.closest("form");
+
+  console.log(agreed.value);
+
+  if (form.checkValidity() && agreed.value) {
+    props.openPopup("Вы отправили!");
+    form.reset();
+    name.value = "";
+    phone.value = "";
+    agreed.value = false;
+  } else {
+    form.reportValidity();
+  }
+}
+
+// Form ends
 </script>
 
 <style lang="scss">

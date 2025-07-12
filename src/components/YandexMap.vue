@@ -14,7 +14,7 @@ onMounted(() => {
   ymaps.ready(() => {
     const map = new ymaps.Map("map", {
       center: [59.994261, 30.438012],
-      zoom: 14,
+      zoom: 15,
       controls: ["zoomControl", "geolocationControl"],
     });
 
