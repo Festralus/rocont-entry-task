@@ -8,7 +8,6 @@
   font-display: swap;
   src: url("@/assets/fonts/TildaSansVF/TildaSans-VF.woff2");
 }
-
 @font-face {
   font-family: Gropled;
   font-weight: 100 900;
@@ -25,4 +24,8 @@
 body {
   margin: 0;
   font-family: var(--font-primary);
+}
+
+.select-none {
+  user-select: none;
 }

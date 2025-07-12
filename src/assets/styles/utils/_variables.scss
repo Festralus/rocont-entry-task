@@ -2,3 +2,12 @@ $color-primary: #1f8b48;
 $color-secondary: #fff;
 $color-dark: #131312;
 $color-light: #f6f6f6;
+$color-text: #2e2d2b;
+
+:root {
+  --color-primary: #{$color-primary};
+  --color-secondary: #{$color-secondary};
+  --color-dark: #{$color-dark};
+  --color-light: #{$color-light};
+  --color-text: #{$color-text};
+}

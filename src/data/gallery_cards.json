@@ -1,26 +1,26 @@
 [
   {
-    "image": "@/../public/assets/Gallery-1.webp",
+    "image": "/assets/Gallery-1.webp",
     "title": "Немного упругости",
     "text": "Чуть-чуть сияния, и ощущение, что вы о себе позаботились"
   },
   {
-    "image": "@/../public/assets/Gallery-2.webp",
+    "image": "/assets/Gallery-2.webp",
     "title": "Свежесть",
     "text": "Для тех, кто хочет проснуться обновлённым"
   },
   {
-    "image": "@/../public/assets/Gallery-3.webp",
+    "image": "/assets/Gallery-3.webp",
     "title": "Баланс",
     "text": "Когда всё на своих местах, даже внутри"
   },
   {
-    "image": "@/../public/assets/Gallery-4.webp",
+    "image": "/assets/Gallery-4.webp",
     "title": "Восстановление",
     "text": "Мягкое возвращение к себе"
   },
   {
-    "image": "@/../public/assets/Gallery-5.webp",
+    "image": "/assets/Gallery-5.webp",
     "title": "Расслабление",
     "text": "Пауза, которую вы заслужили"
   }
