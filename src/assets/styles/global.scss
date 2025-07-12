@@ -1,0 +1,28 @@
+@use "@/assets/styles/utils" as *;
+@use "@/assets/styles/base" as *;
+
+@font-face {
+  font-family: Tilda;
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  src: url("@/assets/fonts/TildaSansVF/TildaSans-VF.woff2");
+}
+
+@font-face {
+  font-family: Gropled;
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  src: url("@/assets/fonts/Gropled/Gropled-Bold.otf");
+}
+
+:root {
+  --font-primary: "Tilda", sans-serif;
+  --font-secondary: "Gropled", sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-primary);
+}
