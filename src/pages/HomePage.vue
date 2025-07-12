@@ -23,25 +23,38 @@
       </video>
     </div>
 
-    <div class="hero__text">
-      <h1 class="hero__title">
-        Просто потому <br />
-        что можем <br />
-        с Collagen
-      </h1>
-      <p class="hero__desc lead">
-        Мы запустили основной цикл в 06:42.<br />Результаты наблюдаются, но не
-        зафиксированы.<br />Рекомендуем сохранять спокойствие до следующего
-        сигнала.
-      </p>
-      <button @click="openPopup('Вы попробовали!')" class="button hero__button">
-        <div class="hero__button-text">Попробовать просто так</div>
-        <IconArrow class="hero__button-icon icon-arrow" />
-      </button>
+    <h1 v-if="isScreenXS" class="hero__title">
+      Просто потому <br />
+      что можем <br />
+      с Collagen
+    </h1>
+    <h1 v-else="isScreenXS" class="hero__title">Просто потому что можем</h1>
 
-      <div class="hero__note note">
-        Сертификат есть. Но это не точно. СГР №AM.01.01 .01.003.R.00 o47 4.06.24
-      </div>
+    <p v-if="isScreenMD" class="hero__desc lead">
+      Мы запустили основной цикл в 06:42. Результаты наблюдаются, но не
+      зафиксированы. Рекомендуем сохранять спокойствие до следующего сигнала.
+    </p>
+    <p v-else class="hero__desc lead">
+      Мы запустили основной цикл в 06:42.<br />Результаты наблюдаются, но не
+      зафиксированы.<br />Рекомендуем сохранять спокойствие до следующего
+      сигнала.
+    </p>
+
+    <button @click="openPopup('Вы попробовали!')" class="button hero__button">
+      <div class="hero__button-text">Попробовать просто так</div>
+      <IconArrow class="hero__button-icon icon-arrow" />
+    </button>
+
+    <div v-if="isScreenMD" class="hero__note note">
+      Сертификат есть. Но это не точно. СГР №AM.01.01<br />.01.003.R.00 o47
+      4.06.24
+    </div>
+    <div v-else-if="isScreenLG" class="hero__note note">
+      Сертификат есть. Но это не точно.<br />СГР №AM.01.01 .01.003.R.00 o47
+      4.06.24
+    </div>
+    <div v-else class="hero__note note">
+      Сертификат есть. Но это не точно. СГР №AM.01.01 .01.003.R.00 o47 4.06.24
     </div>
   </section>
 
@@ -56,10 +69,11 @@
       <div
         v-for="(card, index) in cards"
         :key="index"
+        @click="openPopup('Великолепный клик!')"
         class="gallery__item"
         :class="{ 'is-hovered': isMobile }"
       >
-        <img :src="card.image" alt="" class="gallery__img" />
+        <img :src="card.image" :alt="card.alt" class="gallery__img" />
         <div class="gallery__overlay">
           <h4 class="gallery__title">{{ card.title }}</h4>
           <p class="gallery__text">{{ card.text }}</p>
@@ -219,21 +233,25 @@ onUnmounted(() => {
 const galleryRef = ref(null);
 const width = ref(window.innerWidth);
 
-const debounce = (fn, delay) => {
+function debounce(fn, delay) {
   let timer;
   return (...args) => {
     clearTimeout(timer);
     timer = setTimeout(() => fn(...args), delay);
   };
-};
+}
 
-const updateWidth = () => {
+function updateWidth() {
   width.value = window.innerWidth;
-};
+}
 
 const debouncedResize = debounce(updateWidth, 250);
 
 const isMobile = computed(() => width.value <= 960);
+
+const isScreenXS = computed(() => width.value < 480);
+const isScreenMD = computed(() => width.value >= 640 && width.value < 960);
+const isScreenLG = computed(() => width.value >= 960);
 
 const scrollByAmount = 300;
 
