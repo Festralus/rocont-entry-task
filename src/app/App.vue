@@ -1,6 +1,6 @@
 <template>
-  <DefaultLayout>
-    <HomePage />
+  <DefaultLayout v-slot="{ openPopup }">
+    <HomePage :openPopup="openPopup" />
   </DefaultLayout>
 </template>
 
