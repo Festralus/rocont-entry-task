@@ -1,0 +1,29 @@
+@use "@/assets/styles/utils" as *;
+
+.layout {
+  @include lg {
+    padding: 0.5rem 10vw 2rem;
+  }
+
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: 100vh;
+  padding: 0.5rem 0.62rem 1rem;
+
+  &__background_shapes {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    background: url("@/assets/background-shape.webp") no-repeat 0% 0%;
+    background-size: 500%;
+    opacity: 0.05;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+  }
+}
