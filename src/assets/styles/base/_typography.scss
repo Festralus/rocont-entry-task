@@ -1,59 +1,59 @@
 @use "@/assets/styles/utils" as *;
 
 h1 {
-  @include md {
-    font-size: 4rem;
-    line-height: 90%;
-  }
-
   font-family: var(--font-secondary);
   font-size: 2rem;
   font-weight: 700;
   line-height: 100%;
+
+  @include md {
+    font-size: 4rem;
+    line-height: 90%;
+  }
 }
 
 h2 {
+  font-family: var(--font-secondary);
+  font-size: 1.75rem;
+  line-height: 100%;
+
   @include md {
     font-size: 2.5rem;
     line-height: 95%;
   }
-
-  font-family: var(--font-secondary);
-  font-size: 1.75rem;
-  line-height: 100%;
 }
 
 h3 {
-  @include md {
-    font-size: 2rem;
-  }
-
   font-family: var(--font-secondary);
   font-size: 1.75rem;
   line-height: 100%;
+
+  @include md {
+    font-size: 2rem;
+  }
 }
 
 h4 {
+  font-family: var(--font-secondary);
+  font-size: 1.25rem;
+  line-height: 100%;
+
   @include md {
     font-size: 1.5rem;
     line-height: 110%;
   }
-
-  font-family: var(--font-secondary);
-  font-size: 1.25rem;
-  line-height: 100%;
 }
 
 .lead {
-  @include md {
-    font-size: 1.3125rem;
-    line-height: 140%;
-  }
-
   font-family: var(--font-primary);
   font-size: 1.125rem;
   line-height: 120%;
   letter-spacing: -0.03em;
+
+  @include md {
+    font-size: 1.3125rem;
+    line-height: 140%;
+  }
 }
 
 body,
@@ -65,24 +65,24 @@ body,
 }
 
 .note {
-  @include md {
-    font-size: 1rem;
-  }
-
   font-family: var(--font-primary);
   font-size: 0.75rem;
   font-weight: 400;
   line-height: 100%;
   letter-spacing: -0.02em;
+
+  @include md {
+    font-size: 1rem;
+  }
 }
 
 .button {
-  @include md {
-    font-size: 1.125rem;
-  }
-
   font-family: var(--font-secondary);
   font-size: 1rem;
   font-weight: 700;
   line-height: 110%;
+
+  @include md {
+    font-size: 1.125rem;
+  }
 }

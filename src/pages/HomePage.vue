@@ -18,7 +18,7 @@
       <div class="hero__video-placeholder"></div>
 
       <video class="hero__video" autoplay muted loop playsinline preload="auto">
-        <source src="@/../public/assets/Hero-video.mp4" type="video/mp4" />
+        <source src="/assets/Hero-video.mp4" type="video/mp4" />
         К сожалению, воспроизведение видео в Вашем браузере не поддерживается.
       </video>
     </div>
@@ -34,9 +34,9 @@
         зафиксированы.<br />Рекомендуем сохранять спокойствие до следующего
         сигнала.
       </p>
-      <button class="button hero__button -cta" href="#">
-        <div class="hero__button__text">Попробовать просто так</div>
-        <IconArrow class="hero__button__icon" />
+      <button class="button hero__button" href="#">
+        <div class="hero__button-text">Попробовать просто так</div>
+        <IconArrow class="hero__button-icon" />
       </button>
 
       <div class="hero__note note">
@@ -69,26 +69,98 @@
   </section>
 
   <section class="form">
-    <div class="form__box">
-      <h3 class="form__title">Если вы тоже решили «а почему бы и нет»</h3>
-      <ul class="form__benefits">
-        <li>Можно заказать много</li>
-        <li>Доступ возможен через северный интерфейс</li>
-        <li>Можно просто поболтать</li>
-      </ul>
-      <form class="form__fields">
-        <input type="text" placeholder="Имя" required />
-        <input type="tel" placeholder="Телефон" required />
-        <label class="form__checkbox">
-          <input type="checkbox" checked />
+    <h2 class="form__title">Если вы тоже решили «а почему бы и нет»</h2>
+    <ul class="form__benefits">
+      <li class="form__benefit">
+        <div class="form__benefit-icon"><IconArrowSmall /></div>
+        <div class="form__benefit-text">Можно заказать много</div>
+      </li>
+      <li class="form__benefit">
+        <div class="form__benefit-icon"><IconArrowSmall /></div>
+        <div class="form__benefit-text">
+          Доступ возможен через северный интерфейс
+        </div>
+      </li>
+      <li class="form__benefit">
+        <div class="form__benefit-icon"><IconArrowSmall /></div>
+        <div class="form__benefit-text">Можно просто поболтать</div>
+      </li>
+    </ul>
+    <form class="form__fields">
+      <input type="text" class="form__input" placeholder="Имя" required />
+      <input type="tel" class="form__input" placeholder="Телефон" required />
+
+      <div class="form__checkbox">
+        <input type="checkbox" id="checkbox" class="form__checkbox-input" />
+        <label for="checkbox" class="form__checkbox-label note select-none">
           Согласен(-на) на обработку чего угодно — лишь бы форма работала
         </label>
-        <button class="button button--cta" type="submit">Отправить</button>
-      </form>
-    </div>
+      </div>
+
+      <button @click.prevent class="button form__button" type="submit">
+        <div class="hero__button-text">Отправить</div>
+        <IconArrow
+          class="hero__button-icon"
+          :fill-color="'var(--color-primary)'"
+          :stroke-color="'var(--color-secondary)'"
+        />
+      </button>
+    </form>
   </section>
 
-  <footer class="footer"></footer>
+  <section class="contact">
+    <h2 class="contact__title">Контакты</h2>
+
+    <ul class="contact__list lead">
+      <li class="contact__item">
+        <span class="contact__icon"><IconContactsAddress /></span>
+        <span class="contact__text"
+          >Офис, где делают странные, но симпатичные вещи</span
+        >
+      </li>
+      <li class="contact__item">
+        <span class="contact__icon"><IconContactsClock /></span>
+        <span class="contact__text">Пн–Пт с 10:00 до 20:00</span>
+      </li>
+      <li class="contact__item">
+        <span class="contact__icon"><IconContactsPhone /></span>
+        <span class="contact__text">8 (800) 444 44 44</span>
+      </li>
+      <li class="contact__item">
+        <span class="contact__icon"><IconContactsPhone /></span>
+        <span class="contact__text">8 (800) 888 88 88</span>
+      </li>
+      <li class="contact__item">
+        <span class="contact__icon"><IconContactsMail /></span>
+        <span class="contact__text">example@mail.ru</span>
+      </li>
+    </ul>
+
+    <button class="contact__button button -cta">
+      <span class="contact__button-text">Связаться</span>
+      <span class="contact__button-icon"><IconArrow /></span>
+    </button>
+  </section>
+
+  <section class="map">
+    <YandexMap />
+  </section>
+
+  <footer class="footer">
+    <div class="footer__logo"><IconCompanyLogo /></div>
+    <ul class="footer__links">
+      <li class="footer__link lead">О системе</li>
+      <li class="footer__link lead">Архитектура</li>
+      <li class="footer__link lead">Вопросы</li>
+      <li class="footer__link lead">Отзывы</li>
+      <li class="footer__link lead">Для своих</li>
+    </ul>
+    <div class="footer__separator"></div>
+    <ul class="footer__tos">
+      <li class="footer__tos-item">Коллаген © 2025</li>
+      <li class="footer__tos-item">Политика обработки чего-то личного</li>
+    </ul>
+  </footer>
 </template>
 
 <script setup>
@@ -96,9 +168,16 @@ import { ref, onMounted, onUnmounted, computed } from "vue";
 
 import cards from "@/data/gallery_cards.json";
 
+import YandexMap from "@/components/YandexMap.vue";
+
 import IconArrow from "@/assets/icons/IconArrow.vue";
+import IconArrowSmall from "@/assets/icons/IconArrowSmall.vue";
 import IconBurgerMenu from "@/assets/icons/IconBurgerMenu.vue";
 import IconCompanyLogo from "@/assets/icons/IconCompanyLogo.vue";
+import IconContactsAddress from "@/assets/icons/IconContactsAddress.vue";
+import IconContactsClock from "@/assets/icons/IconContactsClock.vue";
+import IconContactsMail from "@/assets/icons/IconContactsMail.vue";
+import IconContactsPhone from "@/assets/icons/IconContactsPhone.vue";
 
 onMounted(() => {
   window.addEventListener("resize", debouncedResize);
