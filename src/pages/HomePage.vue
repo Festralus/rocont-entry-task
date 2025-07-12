@@ -61,8 +61,16 @@
   <section class="gallery">
     <h2 class="gallery__title">Это — не совсем то, что вы думаете</h2>
     <div class="gallery__controls" v-if="!isMobile">
-      <button @click="scrollLeft" class="gallery__arrow">←</button>
-      <button @click="scrollRight" class="gallery__arrow">→</button>
+      <IconArrow
+        :fillColor="'var(--color-light)'"
+        @click="scrollLeft"
+        class="gallery__arrow"
+      ></IconArrow>
+      <IconArrow
+        :fillColor="'var(--color-light)'"
+        @click="scrollRight"
+        class="gallery__arrow"
+      ></IconArrow>
     </div>
 
     <div class="gallery__row" ref="galleryRef" tabindex="0">
@@ -73,10 +81,10 @@
         class="gallery__item"
         :class="{ 'is-hovered': isMobile }"
       >
-        <img :src="card.image" :alt="card.alt" class="gallery__img" />
-        <div class="gallery__overlay">
-          <h4 class="gallery__title">{{ card.title }}</h4>
-          <p class="gallery__text">{{ card.text }}</p>
+        <img :src="card.image" :alt="card.alt" class="gallery__item-img" />
+        <div class="gallery__item-overlay">
+          <h4 class="gallery__item-title">{{ card.title }}</h4>
+          <p class="gallery__item-text">{{ card.text }}</p>
         </div>
       </div>
     </div>
@@ -124,7 +132,7 @@
           class="form__checkbox-input"
           required
         />
-        <label for="checkbox" class="form__checkbox-label note select-none">
+        <label for="checkbox" class="form__checkbox-label note">
           Согласен(-на) на обработку чего угодно — лишь бы форма работала
         </label>
       </div>
@@ -247,7 +255,7 @@ function updateWidth() {
 
 const debouncedResize = debounce(updateWidth, 250);
 
-const isMobile = computed(() => width.value <= 960);
+const isMobile = computed(() => width.value < 960);
 
 const isScreenXS = computed(() => width.value < 480);
 const isScreenMD = computed(() => width.value >= 640 && width.value < 960);
