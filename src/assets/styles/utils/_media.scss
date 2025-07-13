@@ -35,7 +35,7 @@ $breakpoint-xxl: 1500px;
   }
 }
 @mixin xxl {
-  @media (min-width: #{$breakpoint-xl}) {
+  @media (min-width: #{$breakpoint-xxl}) {
     @content;
   }
 }
