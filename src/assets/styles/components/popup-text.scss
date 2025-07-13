@@ -28,11 +28,24 @@
     background-color: $color-secondary;
     padding: 1rem;
     text-align: center;
+
+    @include lg {
+      padding: 2rem;
+    }
+
+    @include xxl {
+      padding: 2rem 3rem;
+      max-width: 40rem;
+    }
   }
 
   &__close-button {
     position: relative;
     margin-top: 0.5rem;
     transform: rotate(180deg);
+
+    @include lg {
+      margin-top: 1.5rem;
+    }
   }
 }

@@ -1,11 +1,19 @@
 $color-primary: #1f8b48;
-$color-secondary: #fff;
+$color-primary-hovered: #26a958;
+$color-primary-active: #166334;
+$color-secondary: #ffffff;
+$color-secondary-hovered: #f0f0f0;
+$color-secondary-active: #d6d6d6;
 $color-dark: #131312;
 $color-light: #f6f6f6;
 $color-text: #2e2d2b;
 
 :root {
   --color-primary: #{$color-primary};
+  --color-primary-hovered: #{$color-primary-hovered};
+  --color-primary-active: #{$color-primary-active};
+  --color-secondary-hovered: #{$color-secondary-hovered};
+  --color-secondary-active: #{$color-secondary-active};
   --color-secondary: #{$color-secondary};
   --color-dark: #{$color-dark};
   --color-light: #{$color-light};

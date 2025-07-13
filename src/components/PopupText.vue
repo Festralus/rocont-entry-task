@@ -14,25 +14,44 @@
       </h2>
       <button
         @click="closePopText"
+        @mouseenter="popupArrow.onMouseEnter"
+        @mouseleave="popupArrow.onMouseLeave"
+        @mousedown="popupArrow.onMouseDown"
+        @mouseup="popupArrow.onMouseUp"
         class="button popup-text__close-button"
         aria-label="Close popup"
       >
         <IconArrow
           class="icon-arrow"
-          :fillColor="'var(--color-primary)'"
+          :fillColor="
+            popupArrow.isActive
+              ? 'var(--color-primary-active)'
+              : popupArrow.isHovered
+              ? 'var(--color-primary-hovered)'
+              : 'var(--color-primary)'
+          "
           :strokeColor="'var(--color-secondary)'"
+          :width="isScreenLG ? 90 : 66"
         />
       </button>
     </div>
   </section>
 </template>
 <script setup>
+import { ref, computed } from "vue";
+
+import { useHoverActive } from "@/composables/useHoverActive";
+
 import IconArrow from "@/assets/icons/IconArrow.vue";
 
 defineProps({
   currentTarget: String,
   popTextActive: Boolean,
 });
+
+const popupArrow = ref(useHoverActive());
+
+const isScreenLG = computed(() => window.innerWidth >= 960);
 
 const emit = defineEmits(["close"]);
 
