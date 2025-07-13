@@ -56,7 +56,7 @@
         @mousedown="formButton.onMouseDown"
         @mouseup="formButton.onMouseUp"
       >
-        <div class="hero__button-text">Отправить</div>
+        <div class="hero__button-text -cta">Отправить</div>
         <IconArrow
           class="hero__button-icon icon-arrow"
           :fillColor="
