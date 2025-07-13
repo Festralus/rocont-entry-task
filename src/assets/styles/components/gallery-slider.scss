@@ -1,11 +1,14 @@
 @use "@/assets/styles/utils" as *;
 
 .gallery {
+  max-width: max-content;
   display: grid;
   grid-template-columns: repeat(2, auto);
   grid-template-rows: repeat(2, auto);
 
   margin-top: 4rem;
+  margin-left: auto;
+  margin-right: auto;
 
   @include lg {
     grid-template-columns: 25% 75%;
@@ -53,6 +56,7 @@
   }
 
   &__row {
+    max-width: max-content;
     margin-top: 1.5rem;
     display: flex;
     overflow-x: auto;

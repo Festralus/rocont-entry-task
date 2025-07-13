@@ -139,7 +139,6 @@ props.inputs.forEach((input) => {
 const showCheckboxError = ref(false);
 
 function handleSubmit(event) {
-  console.log(showCheckboxError.value);
   const form = event.target.closest("form");
 
   const isValidForm = form.checkValidity();
