@@ -10,8 +10,8 @@
 
       <ul class="form__benefits">
         <li class="form__benefit" v-for="(item, i) in benefits" :key="i">
-          <div class="form__benefit-icon"><IconArrowSmall /></div>
-          <div class="form__benefit-text lead">{{ item }}</div>
+          <span class="form__benefit-icon"><IconArrowSmall /></span>
+          <span class="form__benefit-text lead">{{ item }}</span>
         </li>
       </ul>
     </div>
@@ -56,7 +56,7 @@
         @mousedown="formButton.onMouseDown"
         @mouseup="formButton.onMouseUp"
       >
-        <div class="hero__button-text -cta">Отправить</div>
+        <span class="hero__button-text -cta">Отправить</span>
         <IconArrow
           class="hero__button-icon icon-arrow"
           :fillColor="

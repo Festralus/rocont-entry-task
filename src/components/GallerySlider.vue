@@ -121,8 +121,6 @@ function checkIfScrollable() {
   if (el) {
     showArrows.value = el.scrollWidth > el.clientWidth;
   }
-  console.log(el.scrollWidth);
-  console.log(el.clientWidth);
 }
 
 // Scroll via arrows
