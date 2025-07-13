@@ -2,11 +2,36 @@
   <header class="header">
     <IconCompanyLogo class="header__logo" />
     <nav class="header__nav">
-      <a class="header__nav-element" href="#">О системе</a>
-      <a class="header__nav-element" href="#">Архитектура</a>
-      <a class="header__nav-element" href="#">Мнения</a>
-      <a class="header__nav-element header__cta" href="#">Попробовать</a>
-      <a class="header__nav-element" href="#">Для своих</a>
+      <a
+        @click="openPopup('Эта страница обязательно будет добавлена!')"
+        class="header__nav-element"
+        href="#"
+        >О системе</a
+      >
+      <a
+        @click="openPopup('Эта страница обязательно будет добавлена!')"
+        class="header__nav-element"
+        href="#"
+        >Архитектура</a
+      >
+      <a
+        @click="openPopup('Эта страница обязательно будет добавлена!')"
+        class="header__nav-element"
+        href="#"
+        >Мнения</a
+      >
+      <a
+        @click="openPopup('Эта страница обязательно будет добавлена!')"
+        class="header__nav-element header__cta"
+        href="#"
+        >Попробовать</a
+      >
+      <a
+        @click="openPopup('Эта страница обязательно будет добавлена!')"
+        class="header__nav-element"
+        href="#"
+        >Для своих</a
+      >
     </nav>
     <div class="header__burger-menu">
       <IconBurgerMenu />
@@ -301,8 +326,6 @@ const agreed = ref(false);
 
 function handleSubmit(event) {
   const form = event.target.closest("form");
-
-  console.log(agreed.value);
 
   if (form.checkValidity() && agreed.value) {
     props.openPopup("Вы отправили!");
