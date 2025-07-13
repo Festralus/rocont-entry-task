@@ -90,156 +90,9 @@
     </div>
   </section>
 
-  <section class="gallery">
-    <h2 class="gallery__title">Это — не совсем то, что вы думаете</h2>
-    <div class="gallery__controls" v-if="!isMobile">
-      <IconArrow
-        class="gallery__arrow"
-        @click="scrollLeft"
-        @mouseenter="leftArrow.onMouseEnter"
-        @mouseleave="leftArrow.onMouseLeave"
-        @mousedown="leftArrow.onMouseDown"
-        @mouseup="leftArrow.onMouseUp"
-        :fillColor="
-          leftArrow.isActive
-            ? 'var(--color-primary-active)'
-            : leftArrow.isHovered
-            ? 'var(--color-primary)'
-            : 'var(--color-light)'
-        "
-        :strokeColor="
-          leftArrow.isActive || leftArrow.isHovered
-            ? 'var(--color-secondary)'
-            : 'var(--color-primary)'
-        "
-      />
-      <IconArrow
-        class="gallery__arrow"
-        @click="scrollRight"
-        @mouseenter="rightArrow.onMouseEnter"
-        @mouseleave="rightArrow.onMouseLeave"
-        @mousedown="rightArrow.onMouseDown"
-        @mouseup="rightArrow.onMouseUp"
-        :fillColor="
-          rightArrow.isActive
-            ? 'var(--color-primary-active)'
-            : rightArrow.isHovered
-            ? 'var(--color-primary)'
-            : 'var(--color-light)'
-        "
-        :strokeColor="
-          rightArrow.isActive || rightArrow.isHovered
-            ? 'var(--color-secondary)'
-            : 'var(--color-primary)'
-        "
-      ></IconArrow>
-    </div>
+  <GallerySlider :cards="cards" :openPopup="openPopup" />
 
-    <div class="gallery__row" ref="galleryRef" tabindex="0">
-      <div
-        v-for="(card, index) in cards"
-        :key="index"
-        @click="openPopup('Великолепный клик!')"
-        class="gallery__item"
-        :class="{ 'is-hovered': isMobile }"
-      >
-        <img :src="card.image" :alt="card.alt" class="gallery__item-img" />
-        <div class="gallery__item-overlay">
-          <h4 class="gallery__item-title">{{ card.title }}</h4>
-          <p class="gallery__item-text">{{ card.text }}</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="form">
-    <div class="form__info">
-      <h2 v-if="isSmallMobile" class="form__title">
-        Если вы<br />тоже решили<br />«а почему бы и нет»
-      </h2>
-      <h2 v-else class="form__title">
-        Если вы тоже решили<br />«а почему бы и нет»
-      </h2>
-      <ul class="form__benefits">
-        <li class="form__benefit">
-          <div class="form__benefit-icon"><IconArrowSmall /></div>
-          <div class="form__benefit-text lead">Можно заказать много</div>
-        </li>
-        <li class="form__benefit">
-          <div class="form__benefit-icon"><IconArrowSmall /></div>
-          <div class="form__benefit-text lead">
-            Доступ возможен через северный интерфейс
-          </div>
-        </li>
-        <li class="form__benefit">
-          <div class="form__benefit-icon"><IconArrowSmall /></div>
-          <div class="form__benefit-text lead">Можно просто поболтать</div>
-        </li>
-      </ul>
-    </div>
-    <form class="form__fields" @submit.prevent="handleSubmit">
-      <div class="form__text-inputs">
-        <input
-          v-model="name"
-          type="text"
-          class="form__text-input"
-          placeholder="Имя"
-          required
-        />
-        <input
-          v-model="phone"
-          type="tel"
-          class="form__text-input"
-          placeholder="Телефон"
-          required
-        />
-      </div>
-
-      <div class="form__checkbox">
-        <input
-          v-model="agreed"
-          type="checkbox"
-          id="checkbox"
-          class="form__checkbox-input"
-          required
-        />
-        <label for="checkbox" class="form__checkbox-label note">
-          <span class="form__checkbox-text"
-            >Согласен(-на) на обработку чего угодно — лишь бы форма
-            работала</span
-          >
-        </label>
-      </div>
-
-      <button
-        class="button form__button"
-        type="submit"
-        @mouseenter="formButton.onMouseEnter"
-        @mouseleave="formButton.onMouseLeave"
-        @mousedown="formButton.onMouseDown"
-        @mouseup="formButton.onMouseUp"
-      >
-        <div class="hero__button-text">Отправить</div>
-        <IconArrow
-          class="hero__button-icon icon-arrow"
-          :fillColor="
-            formButton.isActive
-              ? 'var(--color-primary-active)'
-              : formButton.isHovered
-              ? 'var(--color-primary-hovered)'
-              : 'var(--color-primary)'
-          "
-          :strokeColor="
-            formButton.isActive
-              ? 'var(--color-secondary-active)'
-              : formButton.isHovered
-              ? 'var(--color-secondary-hovered)'
-              : 'var(--color-secondary)'
-          "
-        />
-      </button>
-    </form>
-  </section>
+  <FormComponent :inputs="inputs" :benefits="benefits" :openPopup="openPopup" />
 
   <div class="contact-map-wrapper">
     <section class="contact">
@@ -375,8 +228,8 @@ import cards from "@/data/gallery_cards.json";
 
 // Components import
 import YandexMap from "@/components/YandexMap.vue";
-// import GallerySlider from "@/components/GallerySlider.vue";
-// import FormComponent from "@/components/FormComponent.vue";
+import GallerySlider from "@/components/GallerySlider.vue";
+import FormComponent from "@/components/FormComponent.vue";
 
 // Icons import
 import IconArrow from "@/assets/icons/IconArrow.vue";
@@ -396,14 +249,6 @@ const props = defineProps({
   openPopup: Function,
 });
 
-onMounted(() => {
-  window.addEventListener("resize", debouncedResize);
-});
-
-onUnmounted(() => {
-  window.removeEventListener("resize", debouncedResize);
-});
-
 // CSS helpers start
 
 const width = ref(window.innerWidth);
@@ -415,64 +260,23 @@ const isScreenLG = computed(() => width.value >= 960);
 
 // Button colors reactivity
 const heroButton = ref(useHoverActive());
-const leftArrow = ref(useHoverActive());
-const rightArrow = ref(useHoverActive());
 const formButton = ref(useHoverActive());
 const contactButton = ref(useHoverActive());
 
 // CSS helpers end
 
-// Gallery slider starts
-
-const galleryRef = ref(null);
-
-function debounce(fn, delay) {
-  let timer;
-  return (...args) => {
-    clearTimeout(timer);
-    timer = setTimeout(() => fn(...args), delay);
-  };
-}
-
-function updateWidth() {
-  width.value = window.innerWidth;
-}
-
-const debouncedResize = debounce(updateWidth, 250);
-
-const isMobile = computed(() => width.value < 960);
-
-const scrollByAmount = 300;
-
-const scrollLeft = () => {
-  galleryRef.value?.scrollBy({ left: -scrollByAmount, behavior: "smooth" });
-};
-
-const scrollRight = () => {
-  galleryRef.value?.scrollBy({ left: scrollByAmount, behavior: "smooth" });
-};
-
-// Gallery slider ends
-
 // Form starts
 
-const name = ref("");
-const phone = ref("");
-const agreed = ref(false);
+const inputs = [
+  { name: "name", type: "text", placeholder: "Имя" },
+  { name: "phone", type: "tel", placeholder: "Телефон" },
+];
 
-function handleSubmit(event) {
-  const form = event.target.closest("form");
-
-  if (form.checkValidity() && agreed.value) {
-    props.openPopup("Вы отправили!");
-    form.reset();
-    name.value = "";
-    phone.value = "";
-    agreed.value = false;
-  } else {
-    form.reportValidity();
-  }
-}
+const benefits = [
+  "Можно заказать много",
+  "Доступ через северный интерфейс",
+  "Можно просто поболтать",
+];
 
 // Form ends
 </script>

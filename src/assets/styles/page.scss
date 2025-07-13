@@ -599,6 +599,11 @@
     &-text {
       text-align: 11rem;
     }
+
+    &-error {
+      display: block;
+      color: #ff6f6f;
+    }
   }
 
   &__button {
@@ -607,7 +612,10 @@
     align-items: center;
     width: 100%;
     height: 52px;
-    margin: 1.5rem auto 0;
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+    margin-right: auto;
+    margin-left: auto;
     padding: 0 1rem 0 1.5rem;
     color: $color-dark;
     background-color: $color-secondary;
@@ -616,17 +624,28 @@
 
     @include sm {
       max-width: 12rem;
-      margin: 1.5rem 0 0;
+      margin-bottom: 0;
+      margin-right: 0;
+      margin-left: 0;
     }
 
     @include xl {
       max-width: 13rem;
-      margin-top: 1rem 0 0;
+      margin-top: 1rem;
     }
 
     @include xxl {
-      margin: 1rem auto 0;
+      margin-bottom: 0;
+      margin-right: auto;
       max-width: 16rem;
+    }
+
+    &-error {
+      margin-top: 0;
+
+      @include xl {
+        margin-top: 0;
+      }
     }
 
     &:hover {
