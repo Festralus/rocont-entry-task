@@ -2,34 +2,22 @@
   <header class="header">
     <IconCompanyLogo class="header__logo" />
     <nav class="header__nav">
-      <a
-        @click="openPopup('Эта страница обязательно будет добавлена!')"
-        class="header__nav-element"
-        href="#"
+      <a @click="openPopup(inDevelopment)" class="header__nav-element" href="#"
         >О системе</a
       >
-      <a
-        @click="openPopup('Эта страница обязательно будет добавлена!')"
-        class="header__nav-element"
-        href="#"
+      <a @click="openPopup(inDevelopment)" class="header__nav-element" href="#"
         >Архитектура</a
       >
-      <a
-        @click="openPopup('Эта страница обязательно будет добавлена!')"
-        class="header__nav-element"
-        href="#"
+      <a @click="openPopup(inDevelopment)" class="header__nav-element" href="#"
         >Мнения</a
       >
       <a
-        @click="openPopup('Эта страница обязательно будет добавлена!')"
+        @click="openPopup(inDevelopment)"
         class="header__nav-element header__cta"
         href="#"
         >Попробовать</a
       >
-      <a
-        @click="openPopup('Эта страница обязательно будет добавлена!')"
-        class="header__nav-element"
-        href="#"
+      <a @click="openPopup(inDevelopment)" class="header__nav-element" href="#"
         >Для своих</a
       >
     </nav>
@@ -65,9 +53,28 @@
       сигнала.
     </p>
 
-    <button @click="openPopup('Вы попробовали!')" class="button hero__button">
+    <button
+      @click="openPopup('Вы попробовали!')"
+      @mouseenter="heroButton.onMouseEnter"
+      @mouseleave="heroButton.onMouseLeave"
+      @mousedown="heroButton.onMouseDown"
+      @mouseup="heroButton.onMouseUp"
+      class="button hero__button"
+    >
       <div class="hero__button-text">Попробовать просто так</div>
-      <IconArrow class="hero__button-icon icon-arrow" />
+      <IconArrow
+        class="hero__button-icon icon-arrow"
+        :fillColor="
+          heroButton.isActive
+            ? 'var(--color-secondary-active)'
+            : 'var(--color-secondary)'
+        "
+        :strokeColor="
+          heroButton.isHovered
+            ? 'var(--color-primary-hovered)'
+            : 'var(--color-primary)'
+        "
+      />
     </button>
 
     <div v-if="isScreenMD" class="hero__note note">
@@ -87,14 +94,44 @@
     <h2 class="gallery__title">Это — не совсем то, что вы думаете</h2>
     <div class="gallery__controls" v-if="!isMobile">
       <IconArrow
-        :fillColor="'var(--color-light)'"
+        class="gallery__arrow"
         @click="scrollLeft"
-        class="gallery__arrow"
-      ></IconArrow>
+        @mouseenter="leftArrow.onMouseEnter"
+        @mouseleave="leftArrow.onMouseLeave"
+        @mousedown="leftArrow.onMouseDown"
+        @mouseup="leftArrow.onMouseUp"
+        :fillColor="
+          leftArrow.isActive
+            ? 'var(--color-primary-active)'
+            : leftArrow.isHovered
+            ? 'var(--color-primary)'
+            : 'var(--color-light)'
+        "
+        :strokeColor="
+          leftArrow.isActive || leftArrow.isHovered
+            ? 'var(--color-secondary)'
+            : 'var(--color-primary)'
+        "
+      />
       <IconArrow
-        :fillColor="'var(--color-light)'"
-        @click="scrollRight"
         class="gallery__arrow"
+        @click="scrollRight"
+        @mouseenter="rightArrow.onMouseEnter"
+        @mouseleave="rightArrow.onMouseLeave"
+        @mousedown="rightArrow.onMouseDown"
+        @mouseup="rightArrow.onMouseUp"
+        :fillColor="
+          rightArrow.isActive
+            ? 'var(--color-primary-active)'
+            : rightArrow.isHovered
+            ? 'var(--color-primary)'
+            : 'var(--color-light)'
+        "
+        :strokeColor="
+          rightArrow.isActive || rightArrow.isHovered
+            ? 'var(--color-secondary)'
+            : 'var(--color-primary)'
+        "
       ></IconArrow>
     </div>
 
@@ -174,12 +211,31 @@
         </label>
       </div>
 
-      <button class="button form__button" type="submit">
+      <button
+        class="button form__button"
+        type="submit"
+        @mouseenter="formButton.onMouseEnter"
+        @mouseleave="formButton.onMouseLeave"
+        @mousedown="formButton.onMouseDown"
+        @mouseup="formButton.onMouseUp"
+      >
         <div class="hero__button-text">Отправить</div>
         <IconArrow
           class="hero__button-icon icon-arrow"
-          :fill-color="'var(--color-primary)'"
-          :stroke-color="'var(--color-secondary)'"
+          :fillColor="
+            formButton.isActive
+              ? 'var(--color-primary-active)'
+              : formButton.isHovered
+              ? 'var(--color-primary-hovered)'
+              : 'var(--color-primary)'
+          "
+          :strokeColor="
+            formButton.isActive
+              ? 'var(--color-secondary-active)'
+              : formButton.isHovered
+              ? 'var(--color-secondary-hovered)'
+              : 'var(--color-secondary)'
+          "
         />
       </button>
     </form>
@@ -219,11 +275,26 @@
 
       <button
         @click="openPopup('Вы связались!')"
+        @mouseenter="contactButton.onMouseEnter"
+        @mouseleave="contactButton.onMouseLeave"
+        @mousedown="contactButton.onMouseDown"
+        @mouseup="contactButton.onMouseUp"
         class="contact__button button -cta"
       >
         <span class="contact__button-text">Связаться</span>
         <span class="contact__button-icon"
-          ><IconArrow class="icon-arrow"
+          ><IconArrow
+            class="icon-arrow"
+            :fillColor="
+              contactButton.isActive
+                ? 'var(--color-secondary-active)'
+                : 'var(--color-secondary)'
+            "
+            :strokeColor="
+              contactButton.isHovered
+                ? 'var(--color-primary-hovered)'
+                : 'var(--color-primary)'
+            "
         /></span>
       </button>
     </section>
@@ -236,16 +307,59 @@
   <footer class="footer">
     <div class="footer__logo"><IconCompanyLogo /></div>
     <ul class="footer__links">
-      <li class="footer__link lead">О системе</li>
-      <li class="footer__link lead">Архитектура</li>
-      <li class="footer__link lead">Вопросы</li>
-      <li class="footer__link lead">Отзывы</li>
-      <li class="footer__link lead">Для своих</li>
+      <li>
+        <a
+          class="footer__link lead"
+          @click.prevent="openPopup(inDevelopment)"
+          href="#"
+          >О системе</a
+        >
+      </li>
+      <li>
+        <a
+          @click.prevent="openPopup(inDevelopment)"
+          class="footer__link lead"
+          href="#"
+          >Архитектура</a
+        >
+      </li>
+      <li>
+        <a
+          @click.prevent="openPopup(inDevelopment)"
+          class="footer__link lead"
+          href="#"
+          >Вопросы</a
+        >
+      </li>
+      <li>
+        <a
+          @click.prevent="openPopup(inDevelopment)"
+          class="footer__link lead"
+          href="#"
+          >Отзывы</a
+        >
+      </li>
+      <li>
+        <a
+          @click.prevent="openPopup(inDevelopment)"
+          class="footer__link lead"
+          href="#"
+          >Для своих</a
+        >
+      </li>
     </ul>
     <div class="footer__separator"></div>
     <ul class="footer__tos">
       <li class="footer__tos-item">Коллаген © 2025</li>
-      <li class="footer__tos-item">Политика обработки чего-то личного</li>
+      <li>
+        <a
+          @click.prevent="openPopup(inDevelopment)"
+          class="footer__tos-item"
+          href="#"
+        >
+          Политика обработки чего-то личного
+        </a>
+      </li>
     </ul>
   </footer>
 </template>
@@ -253,12 +367,18 @@
 <script setup>
 import { ref, onMounted, onUnmounted, computed } from "vue";
 
+// Composables import
+import { useHoverActive } from "@/composables/useHoverActive";
+
+// Data import
 import cards from "@/data/gallery_cards.json";
 
+// Components import
 import YandexMap from "@/components/YandexMap.vue";
-// import YandexMap from "@/components/YandexMap.vue";
-// import YandexMap from "@/components/YandexMap.vue";
+// import GallerySlider from "@/components/GallerySlider.vue";
+// import FormComponent from "@/components/FormComponent.vue";
 
+// Icons import
 import IconArrow from "@/assets/icons/IconArrow.vue";
 import IconArrowSmall from "@/assets/icons/IconArrowSmall.vue";
 import IconBurgerMenu from "@/assets/icons/IconBurgerMenu.vue";
@@ -268,6 +388,10 @@ import IconContactsClock from "@/assets/icons/IconContactsClock.vue";
 import IconContactsMail from "@/assets/icons/IconContactsMail.vue";
 import IconContactsPhone from "@/assets/icons/IconContactsPhone.vue";
 
+// Constant variables
+const inDevelopment = "Эта страница обязательно будет добавлена!";
+
+// Misc
 const props = defineProps({
   openPopup: Function,
 });
@@ -280,10 +404,27 @@ onUnmounted(() => {
   window.removeEventListener("resize", debouncedResize);
 });
 
+// CSS helpers start
+
+const width = ref(window.innerWidth);
+
+const isSmallMobile = computed(() => width.value < 360);
+const isScreenXS = computed(() => width.value < 480);
+const isScreenMD = computed(() => width.value >= 640 && width.value < 960);
+const isScreenLG = computed(() => width.value >= 960);
+
+// Button colors reactivity
+const heroButton = ref(useHoverActive());
+const leftArrow = ref(useHoverActive());
+const rightArrow = ref(useHoverActive());
+const formButton = ref(useHoverActive());
+const contactButton = ref(useHoverActive());
+
+// CSS helpers end
+
 // Gallery slider starts
 
 const galleryRef = ref(null);
-const width = ref(window.innerWidth);
 
 function debounce(fn, delay) {
   let timer;
@@ -299,12 +440,7 @@ function updateWidth() {
 
 const debouncedResize = debounce(updateWidth, 250);
 
-const isSmallMobile = computed(() => width.value < 360);
 const isMobile = computed(() => width.value < 960);
-
-const isScreenXS = computed(() => width.value < 480);
-const isScreenMD = computed(() => width.value >= 640 && width.value < 960);
-const isScreenLG = computed(() => width.value >= 960);
 
 const scrollByAmount = 300;
 

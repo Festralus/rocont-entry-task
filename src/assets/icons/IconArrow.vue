@@ -1,7 +1,7 @@
 <template>
   <svg
-    width="48"
-    height="20"
+    :width="width + 'px'"
+    :height="width / 2.4 + 'px'"
     viewBox="0 0 48 20"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -50,6 +50,10 @@ const props = defineProps({
   fillColor: {
     type: String,
     default: "#ffffff",
+  },
+  width: {
+    type: [String, Number],
+    default: 48,
   },
 });
 </script>

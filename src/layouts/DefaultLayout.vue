@@ -3,7 +3,7 @@
     v-if="popTextActive"
     :currentTarget="currentTarget"
     :popTextActive="popTextActive"
-    @close="popTextActive = false"
+    @close="closePopup()"
   />
 
   <div class="layout">
@@ -23,8 +23,15 @@ const popTextActive = ref(false);
 const currentTarget = ref("");
 
 function openPopup(newTarget) {
+  document?.body.classList.add("block-scrolling");
   currentTarget.value = newTarget;
   popTextActive.value = true;
+}
+
+function closePopup(newTarget) {
+  document?.body.classList.remove("block-scrolling");
+  currentTarget.value = null;
+  popTextActive.value = false;
 }
 </script>
 
