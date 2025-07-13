@@ -91,38 +91,47 @@
   </section>
 
   <section class="form">
-    <h2 class="form__title">Если вы тоже решили «а почему бы и нет»</h2>
-    <ul class="form__benefits">
-      <li class="form__benefit">
-        <div class="form__benefit-icon"><IconArrowSmall /></div>
-        <div class="form__benefit-text">Можно заказать много</div>
-      </li>
-      <li class="form__benefit">
-        <div class="form__benefit-icon"><IconArrowSmall /></div>
-        <div class="form__benefit-text">
-          Доступ возможен через северный интерфейс
-        </div>
-      </li>
-      <li class="form__benefit">
-        <div class="form__benefit-icon"><IconArrowSmall /></div>
-        <div class="form__benefit-text">Можно просто поболтать</div>
-      </li>
-    </ul>
+    <div class="form__info">
+      <h2 v-if="isSmallMobile" class="form__title">
+        Если вы<br />тоже решили<br />«а почему бы и нет»
+      </h2>
+      <h2 v-else class="form__title">
+        Если вы тоже решили<br />«а почему бы и нет»
+      </h2>
+      <ul class="form__benefits">
+        <li class="form__benefit">
+          <div class="form__benefit-icon"><IconArrowSmall /></div>
+          <div class="form__benefit-text lead">Можно заказать много</div>
+        </li>
+        <li class="form__benefit">
+          <div class="form__benefit-icon"><IconArrowSmall /></div>
+          <div class="form__benefit-text lead">
+            Доступ возможен через северный интерфейс
+          </div>
+        </li>
+        <li class="form__benefit">
+          <div class="form__benefit-icon"><IconArrowSmall /></div>
+          <div class="form__benefit-text lead">Можно просто поболтать</div>
+        </li>
+      </ul>
+    </div>
     <form class="form__fields" @submit.prevent="handleSubmit">
-      <input
-        v-model="name"
-        type="text"
-        class="form__input"
-        placeholder="Имя"
-        required
-      />
-      <input
-        v-model="phone"
-        type="tel"
-        class="form__input"
-        placeholder="Телефон"
-        required
-      />
+      <div class="form__text-inputs">
+        <input
+          v-model="name"
+          type="text"
+          class="form__text-input"
+          placeholder="Имя"
+          required
+        />
+        <input
+          v-model="phone"
+          type="tel"
+          class="form__text-input"
+          placeholder="Телефон"
+          required
+        />
+      </div>
 
       <div class="form__checkbox">
         <input
@@ -133,7 +142,10 @@
           required
         />
         <label for="checkbox" class="form__checkbox-label note">
-          Согласен(-на) на обработку чего угодно — лишь бы форма работала
+          <span class="form__checkbox-text"
+            >Согласен(-на) на обработку чего угодно — лишь бы форма
+            работала</span
+          >
         </label>
       </div>
 
@@ -255,6 +267,7 @@ function updateWidth() {
 
 const debouncedResize = debounce(updateWidth, 250);
 
+const isSmallMobile = computed(() => width.value < 360);
 const isMobile = computed(() => width.value < 960);
 
 const isScreenXS = computed(() => width.value < 480);

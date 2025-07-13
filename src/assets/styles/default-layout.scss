@@ -26,6 +26,10 @@
       background-size: 500%;
       opacity: 0.05;
       content: "";
+
+      @include lg {
+        background-size: 250%;
+      }
     }
   }
 
