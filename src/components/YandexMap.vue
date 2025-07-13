@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!isMapLoaded" class="yandex-map__placeholder"></div>
+  <div v-if="!isMapLoaded" class="yandex-map-placeholder"></div>
   <div v-show="isMapLoaded" id="map" class="yandex-map"></div>
 </template>
 

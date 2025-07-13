@@ -15,9 +15,9 @@
   }
 
   @include xl {
+    max-width: 76rem;
     margin: 6rem auto auto;
     padding: 4rem;
-    max-width: 76rem;
   }
 
   @include xxl {
@@ -32,7 +32,7 @@
   &__title {
     max-width: 13rem;
 
-    @media (min-width: 347px) {
+    @media (width >= 347px) {
       max-width: 100%;
     }
   }
@@ -46,6 +46,7 @@
       max-width: 100%;
     }
   }
+
   &__benefit {
     display: flex;
     align-items: center;
@@ -60,19 +61,19 @@
 
   &__fields {
     display: flex;
+    flex: 1;
     flex-direction: column;
     margin-top: 1.5rem;
-    gap: 0.5rem;
-    flex: 1;
     padding: 0;
+    gap: 0.5rem;
 
     @include lg {
       margin-top: 0;
     }
 
     @include xxl {
-      padding: 0 0 0 3rem;
       flex: none;
+      padding: 0 0 0 3rem;
     }
   }
 
@@ -145,7 +146,7 @@
         background-repeat: no-repeat;
         content: "";
 
-        @media (min-width: 448px) {
+        @media (width >= 448px) {
           top: -0.2rem;
         }
 
@@ -153,11 +154,11 @@
           top: 0.15rem;
         }
 
-        @media (min-width: 1398px) {
+        @media (width >= 1398px) {
           top: -0.2rem;
         }
       }
-      @media (min-width: 448px) {
+      @media (width >= 448px) {
         margin-top: 0;
       }
     }
@@ -182,21 +183,18 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    max-width: 15rem;
     height: 52px;
-    margin-top: 1.5rem;
-    margin-bottom: 0;
-    margin-right: auto;
-    margin-left: auto;
+    margin: 1.5rem auto 0;
     padding: 0 1rem 0 1.5rem;
     color: $color-dark;
     background-color: $color-secondary;
     border-radius: 2.5rem;
-    max-width: 15rem;
 
     @include sm {
       max-width: 12rem;
-      margin-bottom: 0;
       margin-right: 0;
+      margin-bottom: 0;
       margin-left: 0;
     }
 
@@ -206,9 +204,17 @@
     }
 
     @include xxl {
-      margin-bottom: 0;
-      margin-right: auto;
       max-width: 16rem;
+      margin-right: auto;
+      margin-bottom: 0;
+    }
+
+    &:hover {
+      background-color: $color-secondary-hovered;
+    }
+
+    &:active {
+      background-color: $color-secondary-active;
     }
 
     &-error {
@@ -217,13 +223,6 @@
       @include xl {
         margin-top: 0;
       }
-    }
-
-    &:hover {
-      background-color: $color-secondary-hovered;
-    }
-    &:active {
-      background-color: $color-secondary-active;
     }
   }
 }
