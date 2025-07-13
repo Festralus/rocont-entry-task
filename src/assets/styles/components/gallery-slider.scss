@@ -1,0 +1,179 @@
+@use "@/assets/styles/utils" as *;
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(2, auto);
+
+  margin-top: 4rem;
+
+  @include lg {
+    grid-template-columns: 25% 75%;
+    grid-template-rows: repeat(2, auto);
+  }
+
+  @include xl {
+    margin-top: 6rem;
+  }
+
+  &__title {
+    grid-column: 1/3;
+    grid-row: 1/2;
+
+    @include lg {
+      grid-column: 1/2;
+      grid-row: 1/2;
+
+      margin-right: 0.5rem;
+      max-width: 90%;
+    }
+  }
+
+  &__controls {
+    display: none;
+    justify-content: center;
+    margin-bottom: 1rem;
+    gap: 1rem;
+    margin: auto auto 0 0;
+
+    @include lg {
+      display: flex;
+      grid-column: 1/2;
+      grid-row: 2/3;
+    }
+  }
+
+  &__arrow {
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+
+    &:first-child {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__row {
+    margin-top: 1.5rem;
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    -ms-overflow-style: none;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+
+    grid-column: 1/3;
+    grid-row: 2/3;
+
+    user-select: none;
+
+    @include lg {
+      margin-top: 0;
+      margin-right: -0.62rem;
+      grid-column: 2/3;
+      grid-row: 1/3;
+    }
+
+    @include xxl {
+      margin-right: -10vw;
+    }
+  }
+
+  &__row::-webkit-scrollbar {
+    display: none;
+  }
+
+  &__item {
+    position: relative;
+    flex: 0 0 auto;
+    overflow: hidden;
+    width: 250px;
+    height: 280px;
+    border-radius: 1rem;
+    cursor: pointer;
+    scroll-snap-align: start;
+
+    @include md {
+      height: 320px;
+    }
+
+    @include lg {
+      height: 350px;
+    }
+
+    @include xl {
+      width: 300px;
+      height: 450px;
+    }
+  }
+
+  &__item:last-child {
+    @include lg {
+      margin-right: 0.62rem;
+    }
+  }
+
+  &__item-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 19% 40%;
+    transform: scale(1.5);
+
+    -webkit-user-drag: none;
+    user-select: none;
+    pointer-events: auto;
+
+    @include md {
+      transform: scale(1.5);
+    }
+  }
+
+  &__item-overlay {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 50%;
+    padding: 1.5rem;
+    color: white;
+    background: linear-gradient(
+      to top,
+      rgb(31, 139, 72, 1) 0%,
+      rgb(31, 139, 72, 0) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+
+    @include lg {
+      height: 70%;
+    }
+  }
+
+  &__item:hover &__item-overlay,
+  .is-hovered &__item-overlay {
+    opacity: 1;
+  }
+
+  &__item:active &__item-overlay {
+    background: linear-gradient(
+      to top,
+      rgb(24, 107, 56) 0%,
+      rgb(31, 139, 72, 0) 100%
+    );
+  }
+
+  &__item-title {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  &__item-text {
+    font-size: 0.95rem;
+  }
+}

@@ -218,22 +218,23 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, computed } from "vue";
+// Vue imports
+import { ref, computed } from "vue";
 
-// Composables import
+// Composable imports
 import { useHoverActive } from "@/composables/useHoverActive";
 
-// Data import
+// Data imports
 import cards from "@/data/gallery_cards.json";
+import { inputs, benefits } from "@/data/form_component_data.js";
 
 // Components import
 import YandexMap from "@/components/YandexMap.vue";
 import GallerySlider from "@/components/GallerySlider.vue";
 import FormComponent from "@/components/FormComponent.vue";
 
-// Icons import
+// Icon imports
 import IconArrow from "@/assets/icons/IconArrow.vue";
-import IconArrowSmall from "@/assets/icons/IconArrowSmall.vue";
 import IconBurgerMenu from "@/assets/icons/IconBurgerMenu.vue";
 import IconCompanyLogo from "@/assets/icons/IconCompanyLogo.vue";
 import IconContactsAddress from "@/assets/icons/IconContactsAddress.vue";
@@ -241,44 +242,22 @@ import IconContactsClock from "@/assets/icons/IconContactsClock.vue";
 import IconContactsMail from "@/assets/icons/IconContactsMail.vue";
 import IconContactsPhone from "@/assets/icons/IconContactsPhone.vue";
 
-// Constant variables
+// Layout variables
 const inDevelopment = "Эта страница обязательно будет добавлена!";
+const heroButton = ref(useHoverActive());
+const contactButton = ref(useHoverActive());
 
 // Misc
 const props = defineProps({
   openPopup: Function,
 });
 
-// CSS helpers start
-
+// CSS helpers
 const width = ref(window.innerWidth);
 
-const isSmallMobile = computed(() => width.value < 360);
 const isScreenXS = computed(() => width.value < 480);
 const isScreenMD = computed(() => width.value >= 640 && width.value < 960);
 const isScreenLG = computed(() => width.value >= 960);
-
-// Button colors reactivity
-const heroButton = ref(useHoverActive());
-const formButton = ref(useHoverActive());
-const contactButton = ref(useHoverActive());
-
-// CSS helpers end
-
-// Form starts
-
-const inputs = [
-  { name: "name", type: "text", placeholder: "Имя" },
-  { name: "phone", type: "tel", placeholder: "Телефон" },
-];
-
-const benefits = [
-  "Можно заказать много",
-  "Доступ через северный интерфейс",
-  "Можно просто поболтать",
-];
-
-// Form ends
 </script>
 
 <style lang="scss">

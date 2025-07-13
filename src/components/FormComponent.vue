@@ -80,13 +80,21 @@
 </template>
 
 <script setup>
+// Vue imports
 import { ref, reactive, computed, onMounted, onUnmounted } from "vue";
 
+// Composable imports
 import { useHoverActive } from "@/composables/useHoverActive";
 
+// Icon imports
 import IconArrow from "@/assets/icons/IconArrow.vue";
 import IconArrowSmall from "@/assets/icons/IconArrowSmall.vue";
 
+// Misc
+onMounted(() => window.addEventListener("resize", debouncedResize));
+onUnmounted(() => window.removeEventListener("resize", debouncedResize));
+
+// Props
 const props = defineProps({
   openPopup: Function,
   inputs: {
@@ -106,6 +114,7 @@ const props = defineProps({
   },
 });
 
+// Track resizes for a layout fix
 const width = ref(window.innerWidth);
 const isSmallMobile = computed(() => width.value < 360);
 const formButton = ref(useHoverActive());
@@ -121,9 +130,7 @@ const debouncedResize = debounce(() => {
   width.value = window.innerWidth;
 }, 250);
 
-onMounted(() => window.addEventListener("resize", debouncedResize));
-onUnmounted(() => window.removeEventListener("resize", debouncedResize));
-
+// Track formData for form validation
 const formData = reactive({ agreed: false });
 props.inputs.forEach((input) => {
   formData[input.name] = "";
@@ -152,3 +159,7 @@ function handleSubmit(event) {
   }
 }
 </script>
+
+<style lang="scss">
+@use "@/assets/styles/components/form-component.scss";
+</style>

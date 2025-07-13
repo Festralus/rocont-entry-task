@@ -4,10 +4,13 @@
 </template>
 
 <script setup>
+// Vue imports
 import { onMounted, ref } from "vue";
 
+// Layout variables
 const isMapLoaded = ref(false);
 
+// Misc
 onMounted(() => {
   ymaps.ready(() => {
     const map = new ymaps.Map("map", {
