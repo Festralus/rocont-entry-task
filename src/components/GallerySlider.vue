@@ -64,19 +64,30 @@
 </template>
 
 <script setup>
+// Vue imports
 import { ref, computed, onMounted, onUnmounted } from "vue";
+
+// Composable imports
 import { useHoverActive } from "@/composables/useHoverActive";
 
+// Icon imports
 import IconArrow from "@/assets/icons/IconArrow.vue";
 
+// Misc
+onMounted(() => window.addEventListener("resize", debouncedResize));
+onUnmounted(() => window.removeEventListener("resize", debouncedResize));
+
+// Props
 const props = defineProps({
   cards: Array,
   openPopup: Function,
 });
 
+// Layout variables
 const leftArrow = ref(useHoverActive());
 const rightArrow = ref(useHoverActive());
 
+// Track resizes for image overlays
 const galleryRef = ref(null);
 const width = ref(window.innerWidth);
 
@@ -93,11 +104,9 @@ function updateWidth() {
 }
 const debouncedResize = debounce(updateWidth, 250);
 
-onMounted(() => window.addEventListener("resize", debouncedResize));
-onUnmounted(() => window.removeEventListener("resize", debouncedResize));
-
 const isMobile = computed(() => width.value < 960);
 
+// Scroll via arrows
 const scrollByAmount = 300;
 const scrollLeft = () => {
   galleryRef.value?.scrollBy({ left: -scrollByAmount, behavior: "smooth" });
@@ -106,3 +115,7 @@ const scrollRight = () => {
   galleryRef.value?.scrollBy({ left: scrollByAmount, behavior: "smooth" });
 };
 </script>
+
+<style lang="scss">
+@use "@/assets/styles/components/gallery-slider.scss";
+</style>

@@ -38,21 +38,28 @@
   </section>
 </template>
 <script setup>
+// Vue imports
 import { ref, computed } from "vue";
 
+// Composable imports
 import { useHoverActive } from "@/composables/useHoverActive";
 
+// Icon imports
 import IconArrow from "@/assets/icons/IconArrow.vue";
 
+// Props
 defineProps({
   currentTarget: String,
   popTextActive: Boolean,
 });
 
+// Layout variables
 const popupArrow = ref(useHoverActive());
 
+// Track resizes to change button width
 const isScreenLG = computed(() => window.innerWidth >= 960);
 
+// Close popup window
 const emit = defineEmits(["close"]);
 
 function closePopText() {
