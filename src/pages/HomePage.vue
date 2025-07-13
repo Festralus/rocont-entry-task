@@ -118,7 +118,7 @@
       @mouseup="heroButton.onMouseUp"
       class="button hero__button"
     >
-      <div class="hero__button-text">Попробовать просто так</div>
+      <span class="hero__button-text">Попробовать просто так</span>
       <IconArrow
         class="hero__button-icon icon-arrow"
         :fillColor="
@@ -167,24 +167,37 @@
           <span class="contact__text">Пн–Пт с 10:00 до 20:00</span>
         </li>
         <li class="contact__item contact__item--numbers">
-          <div class="contact__item">
+          <div
+            class="contact__item contact__item--clickable"
+            @click="
+              handleContactClick(firstNumber), openPopup('Номер скопирован')
+            "
+          >
             <span class="contact__icon"><IconContactsPhone /></span>
-            <span class="contact__text">8 (800) 444 44 44</span>
+            <span class="contact__text">{{ firstNumber }}</span>
           </div>
 
-          <div class="contact__item">
+          <div
+            class="contact__item contact__item--clickable"
+            @click="
+              handleContactClick(secondNumber), openPopup('Номер скопирован')
+            "
+          >
             <span class="contact__icon"><IconContactsPhone /></span>
-            <span class="contact__text">8 (800) 888 88 88</span>
+            <span class="contact__text">{{ secondNumber }}</span>
           </div>
         </li>
-        <li class="contact__item">
+        <li
+          class="contact__item contact__item--clickable"
+          @click="handleContactClick(email), openPopup('Почта скопирована')"
+        >
           <span class="contact__icon"><IconContactsMail /></span>
-          <span class="contact__text">example@mail.ru</span>
+          <span class="contact__text">{{ email }}</span>
         </li>
       </ul>
 
       <button
-        @click="openPopup('Вы связались!')"
+        @click="handleContactClick(secondNumber), openPopup('Номер скопирован')"
         @mouseenter="contactButton.onMouseEnter"
         @mouseleave="contactButton.onMouseLeave"
         @mousedown="contactButton.onMouseDown"
@@ -264,7 +277,7 @@
       <li>
         <a
           @click.prevent="openPopup(inDevelopment)"
-          class="footer__tos-item"
+          class="footer__tos-item footer__tos-item--highlighted"
           href="#"
         >
           Политика обработки чего-то личного
@@ -333,6 +346,34 @@ function closeBurgerMenu() {
   setTimeout(() => {
     isBurgerAnimationActive.value = false;
   }, 300);
+}
+
+// Contacts logic
+
+const firstNumber = "8 (800) 444 44 44";
+const secondNumber = "8 (800) 888 88 88";
+const email = "example@mail.ru";
+
+async function handleContactClick(rawText) {
+  const text = rawText.trim();
+  const isEmail = text.includes("@");
+
+  try {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(text);
+    } else {
+      console.log("Ваш браузер не поддерживает копирование :(");
+    }
+  } catch (err) {
+    console.warn("Ошибка копирования:", err);
+  }
+
+  if (isEmail) {
+    window.location.href = `mailto:${text}`;
+  } else {
+    const digitsOnly = text.replace(/[^\d+]/g, "");
+    window.location.href = `tel:${digitsOnly}`;
+  }
 }
 </script>
 
