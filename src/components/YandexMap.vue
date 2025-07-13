@@ -1,7 +1,5 @@
 <template>
-  <div v-if="!isMapLoaded" class="yandex-map__placeholder">
-    Загрузка карты...
-  </div>
+  <div v-if="!isMapLoaded" class="yandex-map__placeholder"></div>
   <div v-show="isMapLoaded" id="map" class="yandex-map"></div>
 </template>
 

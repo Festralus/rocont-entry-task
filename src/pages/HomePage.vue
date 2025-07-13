@@ -160,46 +160,53 @@
     </form>
   </section>
 
-  <section class="contact">
-    <h2 class="contact__title">Контакты</h2>
+  <div class="contact-map-wrapper">
+    <section class="contact">
+      <h2 class="contact__title">Контакты</h2>
 
-    <ul class="contact__list lead">
-      <li class="contact__item">
-        <span class="contact__icon"><IconContactsAddress /></span>
-        <span class="contact__text"
-          >Офис, где делают странные, но симпатичные вещи</span
-        >
-      </li>
-      <li class="contact__item">
-        <span class="contact__icon"><IconContactsClock /></span>
-        <span class="contact__text">Пн–Пт с 10:00 до 20:00</span>
-      </li>
-      <li class="contact__item">
-        <span class="contact__icon"><IconContactsPhone /></span>
-        <span class="contact__text">8 (800) 444 44 44</span>
-      </li>
-      <li class="contact__item">
-        <span class="contact__icon"><IconContactsPhone /></span>
-        <span class="contact__text">8 (800) 888 88 88</span>
-      </li>
-      <li class="contact__item">
-        <span class="contact__icon"><IconContactsMail /></span>
-        <span class="contact__text">example@mail.ru</span>
-      </li>
-    </ul>
+      <ul class="contact__list lead">
+        <li class="contact__item">
+          <span class="contact__icon"><IconContactsAddress /></span>
+          <span class="contact__text"
+            >Офис, где делают странные, но симпатичные вещи</span
+          >
+        </li>
+        <li class="contact__item">
+          <span class="contact__icon"><IconContactsClock /></span>
+          <span class="contact__text">Пн–Пт с 10:00 до 20:00</span>
+        </li>
+        <li class="contact__item contact__item--numbers">
+          <div class="contact__item">
+            <span class="contact__icon"><IconContactsPhone /></span>
+            <span class="contact__text">8 (800) 444 44 44</span>
+          </div>
 
-    <button
-      @click="openPopup('Вы связались!')"
-      class="contact__button button -cta"
-    >
-      <span class="contact__button-text">Связаться</span>
-      <span class="contact__button-icon"><IconArrow class="icon-arrow" /></span>
-    </button>
-  </section>
+          <div class="contact__item">
+            <span class="contact__icon"><IconContactsPhone /></span>
+            <span class="contact__text">8 (800) 888 88 88</span>
+          </div>
+        </li>
+        <li class="contact__item">
+          <span class="contact__icon"><IconContactsMail /></span>
+          <span class="contact__text">example@mail.ru</span>
+        </li>
+      </ul>
 
-  <section class="map">
-    <YandexMap />
-  </section>
+      <button
+        @click="openPopup('Вы связались!')"
+        class="contact__button button -cta"
+      >
+        <span class="contact__button-text">Связаться</span>
+        <span class="contact__button-icon"
+          ><IconArrow class="icon-arrow"
+        /></span>
+      </button>
+    </section>
+
+    <section class="map">
+      <YandexMap />
+    </section>
+  </div>
 
   <footer class="footer">
     <div class="footer__logo"><IconCompanyLogo /></div>
