@@ -2,7 +2,7 @@
   <section class="gallery">
     <h2 class="gallery__title">Это — не совсем то, что вы думаете</h2>
 
-    <div class="gallery__controls" v-if="!isMobile">
+    <div v-show="showArrows" class="gallery__controls" v-if="!isMobile">
       <IconArrow
         class="gallery__arrow"
         @click="scrollLeft"
@@ -74,7 +74,10 @@ import { useHoverActive } from "@/composables/useHoverActive";
 import IconArrow from "@/assets/icons/IconArrow.vue";
 
 // Misc
-onMounted(() => window.addEventListener("resize", debouncedResize));
+onMounted(() => {
+  window.addEventListener("resize", debouncedResize);
+  checkIfScrollable();
+});
 onUnmounted(() => window.removeEventListener("resize", debouncedResize));
 
 // Props
@@ -100,11 +103,25 @@ function debounce(fn, delay) {
 }
 
 function updateWidth() {
+  // Image overlays
   width.value = window.innerWidth;
+  // Arrows
+  checkIfScrollable();
 }
 const debouncedResize = debounce(updateWidth, 250);
 
 const isMobile = computed(() => width.value < 960);
+
+// Track resizes for arrows
+const showArrows = ref(false);
+
+function checkIfScrollable() {
+  if (!galleryRef.value) return;
+  const el = galleryRef.value;
+  if (el) {
+    showArrows.value = el.scrollWidth > el.clientWidth;
+  }
+}
 
 // Scroll via arrows
 const scrollByAmount = 300;

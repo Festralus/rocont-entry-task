@@ -276,8 +276,12 @@
   gap: 1.2rem;
 
   @include lg {
-    width: 55%;
-    padding: 3rem;
+    width: 50.2%;
+    padding: 2rem;
+  }
+
+  @include xl {
+    width: 50.7%;
   }
 
   @include xxl {
