@@ -25,3 +25,7 @@ body {
   margin: 0;
   font-family: var(--font-primary);
 }
+
+.button {
+  user-select: none;
+}
