@@ -1,5 +1,5 @@
 <template>
-  <section class="gallery">
+  <section class="gallery" :class="{ 'gallery-margin': showArrows }">
     <h2 class="gallery__title">Это — не совсем то, что вы думаете</h2>
 
     <div v-show="showArrows" class="gallery__controls" v-if="!isMobile">
@@ -121,6 +121,8 @@ function checkIfScrollable() {
   if (el) {
     showArrows.value = el.scrollWidth > el.clientWidth;
   }
+  console.log(el.scrollWidth);
+  console.log(el.clientWidth);
 }
 
 // Scroll via arrows

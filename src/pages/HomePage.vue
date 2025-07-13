@@ -328,6 +328,11 @@ function openBurgerMenu() {
 
 function closeBurgerMenu() {
   isBurgerOpen.value = false;
+
+  /* Animation on-resize fix */
+  setTimeout(() => {
+    isBurgerAnimationActive.value = false;
+  }, 300);
 }
 </script>
 
