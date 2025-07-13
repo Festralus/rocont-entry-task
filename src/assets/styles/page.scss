@@ -94,11 +94,11 @@
     }
 
     &.active {
-      animation: burger-menu-slide-in0.3s ease-out forwards;
+      animation: burger-menu-slide-in 0.3s ease-out forwards;
     }
 
     &.closed {
-      animation: burger-menu-slide-out0.3s ease-out forwards;
+      animation: burger-menu-slide-out 0.3s ease-out forwards;
     }
 
     /* Animation on-load fix */
