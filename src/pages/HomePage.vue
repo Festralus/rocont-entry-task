@@ -1,4 +1,10 @@
 <template>
+  <div
+    class="header__burger-overlay"
+    @click="closeBurgerMenu"
+    :class="{ active: isBurgerOpen }"
+  ></div>
+
   <header class="header">
     <IconCompanyLogo class="header__logo" />
     <nav class="header__nav">
@@ -13,7 +19,7 @@
       >
       <a
         @click="openPopup(inDevelopment)"
-        class="header__nav-element header__cta"
+        class="header__nav-element -cta"
         href="#"
         >Попробовать</a
       >
@@ -21,9 +27,60 @@
         >Для своих</a
       >
     </nav>
-    <div class="header__burger-menu">
+    <div class="header__burger" @click="openBurgerMenu">
       <IconBurgerMenu />
     </div>
+
+    <nav
+      class="header__burger-menu"
+      :class="{
+        active: isBurgerOpen,
+        closed: !isBurgerOpen,
+        'no-animation': !isBurgerAnimationActive,
+      }"
+    >
+      <IconArrow
+        class="header__burger-arrow"
+        @click="closeBurgerMenu"
+        @mouseenter="burgerArrow.onMouseEnter"
+        @mouseleave="burgerArrow.onMouseLeave"
+        @mousedown="burgerArrow.onMouseDown"
+        @mouseup="burgerArrow.onMouseUp"
+        :fillColor="
+          burgerArrow.isActive
+            ? 'var(--color-primary-active)'
+            : burgerArrow.isHovered
+            ? 'var(--color-primary-hovered)'
+            : 'var(--color-primary)'
+        "
+        :strokeColor="
+          burgerArrow.isActive
+            ? 'var(--color-secondary-active)'
+            : burgerArrow.isHovered
+            ? 'var(--color-secondary-hovered)'
+            : 'var(--color-secondary)'
+        "
+      />
+
+      <a href="#" @click="openPopup(inDevelopment)" class="header__burger-link"
+        >О системе</a
+      >
+      <a href="#" @click="openPopup(inDevelopment)" class="header__burger-link"
+        >Архитектура</a
+      >
+      <a href="#" @click="openPopup(inDevelopment)" class="header__burger-link"
+        >Мнения</a
+      >
+      <a
+        href="#"
+        @click="openPopup(inDevelopment)"
+        class="header__burger-link header__burger-link -cta"
+        >Попробовать</a
+      >
+      <a href="#" @click="openPopup(inDevelopment)" class="header__burger-link"
+        >Для своих</a
+      >
+    </nav>
   </header>
 
   <section class="hero">
@@ -244,6 +301,7 @@ import IconContactsPhone from "@/assets/icons/IconContactsPhone.vue";
 
 // Layout variables
 const inDevelopment = "Эта страница обязательно будет добавлена!";
+const burgerArrow = ref(useHoverActive());
 const heroButton = ref(useHoverActive());
 const contactButton = ref(useHoverActive());
 
@@ -258,6 +316,19 @@ const width = ref(window.innerWidth);
 const isScreenXS = computed(() => width.value < 480);
 const isScreenMD = computed(() => width.value >= 640 && width.value < 960);
 const isScreenLG = computed(() => width.value >= 960);
+
+// Burger menu logic
+const isBurgerOpen = ref(false);
+const isBurgerAnimationActive = ref(false);
+
+function openBurgerMenu() {
+  isBurgerOpen.value = true;
+  isBurgerAnimationActive.value = true;
+}
+
+function closeBurgerMenu() {
+  isBurgerOpen.value = false;
+}
 </script>
 
 <style lang="scss">
