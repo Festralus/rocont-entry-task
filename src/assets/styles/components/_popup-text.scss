@@ -11,7 +11,7 @@
   &__overlay {
     position: absolute;
     inset: 0;
-    background: rgb(0, 0, 0, 0.55);
+    background: rgba(0, 0, 0, 0.55);
   }
 
   &__card {
@@ -40,6 +40,7 @@
   }
 
   &__close-button {
+    display: inline-block;
     position: relative;
     margin-top: 0.5rem;
     padding: 3px 2px 0;

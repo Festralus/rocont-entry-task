@@ -2,18 +2,19 @@
 @use "@/assets/styles/base" as *;
 
 @font-face {
-  font-family: Tilda;
-  font-weight: 100 900;
+  font-family: "Tilda";
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
-  src: url("@/assets/fonts/TildaSansVF/TildaSans-VF.woff2");
+  src: url("/assets/fonts/TildaSansVF/TildaSans-VF.woff2") format("woff2");
 }
+
 @font-face {
-  font-family: Gropled;
-  font-weight: 100 900;
+  font-family: "Gropled";
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
-  src: url("@/assets/fonts/Gropled/Gropled-Bold.otf");
+  src: url("/assets/fonts/Gropled/Gropled-Bold.woff2") format("woff2");
 }
 
 :root {
