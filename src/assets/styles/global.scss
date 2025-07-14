@@ -33,6 +33,6 @@ body {
 .block-scrolling {
   @include xl {
     overflow: hidden;
-    margin-right: 1rem;
+    // margin-right: 1rem;
   }
 }
