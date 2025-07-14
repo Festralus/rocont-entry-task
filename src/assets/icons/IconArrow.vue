@@ -1,7 +1,7 @@
 <template>
   <svg
-    :width="width + 'px'"
-    :height="width / 2.4 + 'px'"
+    :width="width + 'rem'"
+    :height="width / 2.4 + 'rem'"
     viewBox="0 0 48 20"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +53,7 @@ const props = defineProps({
   },
   width: {
     type: [String, Number],
-    default: 48,
+    default: 3,
   },
 });
 </script>

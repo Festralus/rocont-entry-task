@@ -3,6 +3,9 @@
     class="header__burger-overlay"
     @click="closeBurgerMenu"
     :class="{ active: isBurgerOpen }"
+    role="button"
+    tabindex="0"
+    aria-label="Закрыть меню"
   ></div>
 
   <header class="header">
@@ -27,9 +30,9 @@
         >Для своих</a
       >
     </nav>
-    <div class="header__burger" @click="openBurgerMenu">
+    <button class="header__burger" @click="openBurgerMenu">
       <IconBurgerMenu />
-    </div>
+    </button>
 
     <nav
       class="header__burger-menu"
@@ -116,11 +119,7 @@
         preload="auto"
         poster="/assets/hero-fallback-image.webp"
       >
-        <source
-          src="/assets/hero-video.mp4"
-          type="video/mp4"
-          poster="/assets/hero-fallback-image.webp"
-        />
+        <source src="/assets/hero-video.mp4" type="video/mp4" />
         К сожалению, воспроизведение видео в Вашем браузере не поддерживается.
       </video>
     </div>
@@ -166,17 +165,17 @@
       />
     </button>
 
-    <div v-if="isScreenMD" class="hero__note note">
+    <p v-if="isScreenMD" class="hero__note note">
       Сертификат есть. Но это не точно. СГР №AM.01.01<br />.01.003.R.00 o47
       4.06.24
-    </div>
-    <div v-else-if="isScreenLG" class="hero__note note">
+    </p>
+    <p v-else-if="isScreenLG" class="hero__note note">
       Сертификат есть. Но это не точно.<br />СГР №AM.01.01 .01.003.R.00 o47
       4.06.24
-    </div>
-    <div v-else class="hero__note note">
+    </p>
+    <p v-else class="hero__note note">
       Сертификат есть. Но это не точно. СГР №AM.01.01 .01.003.R.00 o47 4.06.24
-    </div>
+    </p>
   </section>
 
   <GallerySlider :cards="cards" :openPopup="openPopup" />
@@ -199,7 +198,7 @@
           <span class="contact__text">Пн–Пт с 10:00 до 20:00</span>
         </li>
         <li class="contact__item contact__item--numbers">
-          <div
+          <button
             class="contact__item contact__item--clickable"
             @click="
               handleContactClick(firstNumber), openPopup('Номер скопирован')
@@ -207,9 +206,9 @@
           >
             <span class="contact__icon"><IconContactsPhone /></span>
             <span class="contact__text">{{ firstNumber }}</span>
-          </div>
+          </button>
 
-          <div
+          <button
             class="contact__item contact__item--clickable"
             @click="
               handleContactClick(secondNumber), openPopup('Номер скопирован')
@@ -217,7 +216,7 @@
           >
             <span class="contact__icon"><IconContactsPhone /></span>
             <span class="contact__text">{{ secondNumber }}</span>
-          </div>
+          </button>
         </li>
         <li
           class="contact__item contact__item--clickable"
@@ -260,7 +259,9 @@
   </div>
 
   <footer class="footer" role="contentinfo">
-    <div class="footer__logo"><IconCompanyLogo /></div>
+    <figure class="footer__logo" aria-label="Логотип компании">
+      <IconCompanyLogo />
+    </figure>
     <ul class="footer__links">
       <li>
         <a

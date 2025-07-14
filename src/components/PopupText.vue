@@ -40,7 +40,7 @@
               : 'var(--color-primary)'
           "
           :strokeColor="'var(--color-secondary)'"
-          :width="isScreenLG ? 90 : 66"
+          :width="isScreenLG ? 5.625 : 4.125"
         />
       </button>
     </div>
@@ -73,9 +73,6 @@ const props = defineProps({
 const popupArrow = ref(useHoverActive());
 const arrowRef = ref(null);
 
-// Track resizes to change button width
-const isScreenLG = computed(() => window.innerWidth >= 960);
-
 // Close popup window
 const emit = defineEmits(["close"]);
 
@@ -92,9 +89,11 @@ function handleKeydown(event) {
 
 onMounted(() => {
   window.addEventListener("keydown", handleKeydown);
+  window.addEventListener("resize", debouncedResize);
 });
 onUnmounted(() => {
   window.removeEventListener("keydown", handleKeydown);
+  window.removeEventListener("resize", debouncedResize);
 });
 
 // Auto-focus popup upon opening it
@@ -108,6 +107,25 @@ setTimeout(() => {
     }
   });
 }, 200);
+
+// CSS helpers
+
+const width = ref(window.innerWidth);
+const isScreenLG = computed(() => width.value >= 960);
+
+function debounce(fn, delay) {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn(...args), delay);
+  };
+}
+
+function updateWidth() {
+  width.value = window.innerWidth;
+}
+
+const debouncedResize = debounce(updateWidth, 250);
 </script>
 <style lang="scss">
 @use "@/assets/styles/components/_popup-text.scss";

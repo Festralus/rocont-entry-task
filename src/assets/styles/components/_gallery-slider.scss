@@ -82,6 +82,7 @@
     -ms-overflow-style: none;
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
+    -webkit-scroll-snap-type: x mandatory;
     scrollbar-width: none;
 
     @include lg {

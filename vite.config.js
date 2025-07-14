@@ -18,6 +18,10 @@ export default defineConfig({
     minify: true,
   },
 
+  preview: {
+    port: 3000,
+    host: true,
+  },
   server: {
     open: true,
     port: 3000,

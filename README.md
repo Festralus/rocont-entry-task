@@ -1,35 +1,63 @@
-# Rocont Test Project
+# Rocont Entry Task
 
-This project is a test assignment to implement an adaptive layout based on a Figma design using Vue 3, SCSS and Vite. It is structured with scalability in mind, even though only a single page is implemented.
+Одностраничный макет, реализованный по заданию, с адаптивной вёрсткой на основе Figma-дизайна. Кодовая база организована с расчётом на масштабирование.
 
-## Technologies Used
+## Сборка и предпросмотр
 
-- Vue 3 with Composition API
-- Vite (Development + Production)
-- SCSS with RSCSS methodology
-- HTML5 with semantic structure
-- Responsive design and fluid layout
-- Interactivity with Vanilla JS and Vue components
-
-## Installation
-
-```bash
-git clone https://github.com/your-username/rocont-test.git
-cd rocont-test
-npm install
-npm run dev
-```
-The app will be available at http://localhost:5173.
-
-## Build
-
-To create a production build:
+Для подготовки проекта:
 
 ```bash
 npm run build
 ```
-Compiled files will appear in the dist/ directory.
 
-## License
+Скомпилированные файлы будут находиться в папке `dist/`.
 
-This is a non-commercial test assignment for skill evaluation only. The resulting work will not be used for any commercial purpose.
+Чтобы проверить результат локально после сборки:
+
+```bash
+npm run preview
+```
+
+Vite поднимет локальный сервер на `http://localhost:3000` (или другом свободном порту).
+
+## Установка и запуск в режиме разработки
+
+1. Клонировать репозиторий:
+
+   ```bash
+   git clone https://github.com/Festralus/rocont-entry-task.git
+   cd rocont-entry-task
+   ```
+
+2. Установить зависимости:
+
+   ```bash
+   npm install
+   ```
+
+3. Запустить проект:
+
+   ```bash
+   npm run dev
+   ```
+
+Приложение будет доступно по адресу `http://localhost:3000` (или другом свободном порту).
+
+## Технологии
+
+* Vue 3 с Composition API
+* Vite (dev + build)
+* SCSS по методологии RSCSS
+* Семантический HTML5
+* Адаптивная и резиновая вёрстка
+* Интерактивность через JavaScript и Vue-компоненты
+
+## Лицензия
+
+Проект разработан в рамках тестового задания и не предназначен для коммерческого использования.
+
+## Контакты верстальщика
+Омельченко Андрей Викторович  
+Телефон: +7 (911) 185-85-30  
+Telegram: https://t.me/andrey_omelch  
+Email: omel.andrey.99@mail.ru
