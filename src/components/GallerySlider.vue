@@ -4,6 +4,7 @@
 
     <div v-show="showArrows" class="gallery__controls" v-if="!isMobile">
       <IconArrow
+        tabindex="0"
         class="gallery__arrow"
         @click="scrollLeft"
         @mouseenter="leftArrow.onMouseEnter"
@@ -24,6 +25,7 @@
         "
       />
       <IconArrow
+        tabindex="0"
         class="gallery__arrow"
         @click="scrollRight"
         @mouseenter="rightArrow.onMouseEnter"
@@ -45,7 +47,7 @@
       />
     </div>
 
-    <div class="gallery__row" ref="galleryRef" tabindex="0">
+    <div class="gallery__row" ref="galleryRef">
       <div
         v-for="(card, index) in cards"
         :key="index"

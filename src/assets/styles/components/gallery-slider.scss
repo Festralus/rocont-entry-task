@@ -58,6 +58,12 @@
     &:first-child {
       transform: rotate(180deg);
     }
+
+    &:focus-visible {
+      border-radius: 2rem;
+      outline: 3px solid $color-primary;
+      outline-offset: 2px;
+    }
   }
 
   &__row {
@@ -85,6 +91,12 @@
     @include xxl {
       margin-right: -10vw;
     }
+
+    // &:focus-visible {
+    //   border-radius: 2rem;
+    //   outline: 3px solid $color-primary;
+    //   outline-offset: 2px;
+    // }
   }
 
   &__row::-webkit-scrollbar {

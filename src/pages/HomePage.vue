@@ -7,7 +7,7 @@
 
   <header class="header">
     <IconCompanyLogo class="header__logo" />
-    <nav class="header__nav">
+    <nav class="header__nav" aria-label="Главное меню">
       <a @click="openPopup(inDevelopment)" class="header__nav-element" href="#"
         >О системе</a
       >
@@ -38,6 +38,7 @@
         closed: !isBurgerOpen,
         'no-animation': !isBurgerAnimationActive,
       }"
+      aria-label="Бургер-меню"
     >
       <IconArrow
         class="header__burger-arrow"
@@ -74,7 +75,7 @@
       <a
         href="#"
         @click="openPopup(inDevelopment)"
-        class="header__burger-link header__burger-link -cta"
+        class="header__burger-link -cta"
         >Попробовать</a
       >
       <a href="#" @click="openPopup(inDevelopment)" class="header__burger-link"
