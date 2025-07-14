@@ -54,6 +54,7 @@
   &__arrow {
     transition: background-color 0.2s ease;
     cursor: pointer;
+    outline: none;
 
     &:first-child {
       transform: rotate(180deg);
@@ -74,7 +75,9 @@
     min-width: 0;
     max-width: max-content;
     margin-top: 1.5rem;
+    padding: 4px;
     user-select: none;
+    -webkit-user-select: none;
     gap: 1rem;
     -ms-overflow-style: none;
     scroll-behavior: smooth;
@@ -91,12 +94,6 @@
     @include xxl {
       margin-right: -10vw;
     }
-
-    // &:focus-visible {
-    //   border-radius: 2rem;
-    //   outline: 3px solid $color-primary;
-    //   outline-offset: 2px;
-    // }
   }
 
   &__row::-webkit-scrollbar {
@@ -125,6 +122,11 @@
       width: 18.75rem;
       height: 28.125rem;
     }
+
+    &:focus-visible {
+      outline: 3px solid $color-primary;
+      outline-offset: 2px;
+    }
   }
 
   &__item:last-child {
@@ -149,6 +151,7 @@
     height: 100%;
     pointer-events: auto;
     user-select: none;
+    -webkit-user-select: none;
     object-fit: cover;
     object-position: 19% 40%;
     transform: scale(1.5);

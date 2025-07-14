@@ -1,10 +1,10 @@
 <template>
   <section class="form">
     <div class="form__info">
-      <h2 v-if="isSmallMobile" class="form__title">
+      <h2 v-show="isSmallMobile" class="form__title">
         Если вы<br />тоже решили<br />«а почему бы и нет»
       </h2>
-      <h2 v-else class="form__title">
+      <h2 v-show="!isSmallMobile" class="form__title">
         Если вы тоже решили<br />«а почему бы и нет»
       </h2>
 
@@ -20,9 +20,11 @@
       <div class="form__text-inputs">
         <input
           v-for="input in inputs"
+          :name="input.name"
           :key="input.name"
           v-model="formData[input.name]"
           :type="input.type"
+          :inputmode="input.type === 'tel' ? 'tel' : undefined"
           :placeholder="input.placeholder"
           class="form__text-input"
           required
@@ -31,19 +33,25 @@
 
       <div @click="showCheckboxError = false" class="form__checkbox">
         <input
+          name="agreed"
           v-model="formData.agreed"
           type="checkbox"
           id="checkbox"
           class="form__checkbox-input"
+          aria-describedby="checkbox-error"
+          :aria-invalid="showCheckboxError ? 'true' : 'false'"
         />
         <label for="checkbox" class="form__checkbox-label note">
-          <span class="form__checkbox-text">
-            Согласен(-на) на обработку чего угодно — лишь бы форма работала
-          </span>
+          Согласен(-на) на обработку чего угодно — лишь бы форма работала
         </label>
       </div>
 
-      <p v-if="showCheckboxError" class="form__checkbox-error">
+      <p
+        v-show="showCheckboxError"
+        class="form__checkbox-error"
+        role="alert"
+        id="checkbox-error"
+      >
         Для отправки необходимо согласиться на обработку данных
       </p>
 
@@ -160,5 +168,5 @@ function handleSubmit(event) {
 </script>
 
 <style lang="scss">
-@use "@/assets/styles/components/form-component.scss";
+@use "@/assets/styles/components/_form-component.scss";
 </style>

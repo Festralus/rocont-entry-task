@@ -11,42 +11,6 @@ This project is a test assignment to implement an adaptive layout based on a Fig
 - Responsive design and fluid layout
 - Interactivity with Vanilla JS and Vue components
 
-## Project Structure
-
-rocont-entry-task/
-├── index.html               # App entry point for Vite
-├── vite.config.js
-├── package.json
-├── public/
-│   └── assets/              # Static assets
-└── src/
-    ├── app/                 # Root application setup
-    │   ├── App.vue
-    │   └── main.js
-    ├── assets/
-    │   ├── styles/
-    │   │   ├── base/
-    │   │   │   ├── _reset.scss
-    │   │   │   ├── _typography.scss
-    │   │   ├── utils/       # variables, mixins, media
-    │   │   │   ├── _variables.scss
-    │   │   │   ├── _media.scss
-    │   │   ├── global.scss
-    │   │   └── page.scss
-    ├── components/          # Reusable UI components
-    ├── features/            # Functional modules
-    │   ├── contact-form/
-    │   │   ├── ContactForm.vue
-    │   │   └── contact-form.scss
-    │   └── slider/
-    │       ├── Slider.vue
-    │       └── slider.scss
-    ├── pages/
-    │   └── HomePage.vue
-    └── router/             # Optional for future multi-page support
-        └── index.js
-
-
 ## Installation
 
 ```bash
