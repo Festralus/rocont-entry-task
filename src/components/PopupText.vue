@@ -1,5 +1,5 @@
 <template>
-  <section v-if="popTextActive" class="popup-text">
+  <section v-show="isPopTextOpen" class="popup-text">
     <!-- Overlay -->
     <div
       class="popup-text__overlay"
@@ -8,18 +8,27 @@
     ></div>
 
     <!-- Modal Dialog -->
-    <div class="popup-text__card">
+    <div
+      class="popup-text__card"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="popup-title"
+    >
       <h2 class="popup-text__text">
-        <span class="">{{ currentTarget }}</span>
+        <span>{{ currentTarget }}</span>
       </h2>
       <button
+        ref="arrowRef"
+        tabindex="0"
         @click="closePopText"
+        @keyup.enter="closePopText"
         @mouseenter="popupArrow.onMouseEnter"
         @mouseleave="popupArrow.onMouseLeave"
         @mousedown="popupArrow.onMouseDown"
         @mouseup="popupArrow.onMouseUp"
         class="button popup-text__close-button"
-        aria-label="Close popup"
+        aria-label="Закрыть меню"
+        role="button"
       >
         <IconArrow
           class="icon-arrow"
@@ -39,7 +48,14 @@
 </template>
 <script setup>
 // Vue imports
-import { ref, computed } from "vue";
+import {
+  ref,
+  computed,
+  onMounted,
+  onUnmounted,
+  watchEffect,
+  nextTick,
+} from "vue";
 
 // Composable imports
 import { useHoverActive } from "@/composables/useHoverActive";
@@ -48,13 +64,14 @@ import { useHoverActive } from "@/composables/useHoverActive";
 import IconArrow from "@/assets/icons/IconArrow.vue";
 
 // Props
-defineProps({
+const props = defineProps({
   currentTarget: String,
-  popTextActive: Boolean,
+  isPopTextOpen: Boolean,
 });
 
 // Layout variables
 const popupArrow = ref(useHoverActive());
+const arrowRef = ref(null);
 
 // Track resizes to change button width
 const isScreenLG = computed(() => window.innerWidth >= 960);
@@ -65,7 +82,33 @@ const emit = defineEmits(["close"]);
 function closePopText() {
   emit("close");
 }
+
+// Close popup-text on Escape
+function handleKeydown(event) {
+  if (event.key === "Escape") {
+    closePopText();
+  }
+}
+
+onMounted(() => {
+  window.addEventListener("keydown", handleKeydown);
+});
+onUnmounted(() => {
+  window.removeEventListener("keydown", handleKeydown);
+});
+
+// Auto-focus popup upon opening it
+setTimeout(() => {
+  watchEffect(() => {
+    if (props.isPopTextOpen) {
+      nextTick(() => {
+        const element = arrowRef.value?.$element || arrowRef.value;
+        element?.focus?.();
+      });
+    }
+  });
+}, 200);
 </script>
 <style lang="scss">
-@use "@/assets/styles/components/popup-text.scss";
+@use "@/assets/styles/components/_popup-text.scss";
 </style>

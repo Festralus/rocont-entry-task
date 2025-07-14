@@ -1,6 +1,15 @@
 <template>
-  <div v-if="!isMapLoaded" class="yandex-map-placeholder"></div>
-  <div v-show="isMapLoaded" id="map" class="yandex-map"></div>
+  <section
+    v-show="!isMapLoaded"
+    class="yandex-map-placeholder"
+    aria-label="Загрузка карты"
+  ></section>
+  <section
+    v-show="isMapLoaded"
+    id="map"
+    class="yandex-map"
+    aria-label="Карта Яндекс"
+  ></section>
 </template>
 
 <script setup>
@@ -35,5 +44,5 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
-@use "@/assets/styles/components/yandex-map.scss";
+@use "@/assets/styles/components/_yandex-map.scss";
 </style>

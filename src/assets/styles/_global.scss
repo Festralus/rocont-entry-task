@@ -28,11 +28,13 @@ body {
 
 .button {
   user-select: none;
+  -webkit-user-select: none;
 }
 
 .block-scrolling {
   @include xl {
     overflow: hidden;
+
     // margin-right: 1rem;
   }
 }

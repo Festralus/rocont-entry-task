@@ -1,13 +1,13 @@
 <template>
   <popText
-    v-if="popTextActive"
+    v-show="isPopTextOpen"
     :currentTarget="currentTarget"
-    :popTextActive="popTextActive"
+    :isPopTextOpen="isPopTextOpen"
     @close="closePopup()"
   />
 
   <div class="layout">
-    <div class="layout__background_shapes" aria-hidden="true"></div>
+    <div class="layout__background-shapes" aria-hidden="true"></div>
 
     <main class="layout__content">
       <slot :openPopup="openPopup" />
@@ -19,22 +19,22 @@
 import { ref } from "vue";
 import popText from "@/components/PopupText.vue";
 
-const popTextActive = ref(false);
+const isPopTextOpen = ref(false);
 const currentTarget = ref("");
 
 function openPopup(newTarget) {
   document?.body.classList.add("block-scrolling");
   currentTarget.value = newTarget;
-  popTextActive.value = true;
+  isPopTextOpen.value = true;
 }
 
-function closePopup(newTarget) {
+function closePopup() {
   document?.body.classList.remove("block-scrolling");
   currentTarget.value = null;
-  popTextActive.value = false;
+  isPopTextOpen.value = false;
 }
 </script>
 
 <style lang="scss">
-@use "@/assets/styles/default-layout.scss";
+@use "@/assets/styles/_default-layout.scss";
 </style>

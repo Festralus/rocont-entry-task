@@ -1,12 +1,19 @@
 <template>
-  <section class="gallery" :class="{ 'gallery-margin': showArrows }">
+  <section
+    class="gallery"
+    :class="{ 'gallery-margin': showArrows }"
+    role="region"
+    aria-label="Галерея изображений"
+  >
     <h2 class="gallery__title">Это — не совсем то, что вы думаете</h2>
 
-    <div v-show="showArrows" class="gallery__controls" v-if="!isMobile">
+    <div v-show="showArrows && !isMobile" class="gallery__controls">
       <IconArrow
-        tabindex="0"
         class="gallery__arrow"
+        aria-label="Прокрутить влево"
+        tabindex="0"
         @click="scrollLeft"
+        @keyup.enter="scrollLeft"
         @mouseenter="leftArrow.onMouseEnter"
         @mouseleave="leftArrow.onMouseLeave"
         @mousedown="leftArrow.onMouseDown"
@@ -25,9 +32,11 @@
         "
       />
       <IconArrow
-        tabindex="0"
         class="gallery__arrow"
+        aria-label="Прокрутить впарво"
+        tabindex="0"
         @click="scrollRight"
+        @keyup.enter="scrollRight"
         @mouseenter="rightArrow.onMouseEnter"
         @mouseleave="rightArrow.onMouseLeave"
         @mousedown="rightArrow.onMouseDown"
@@ -51,11 +60,18 @@
       <div
         v-for="(card, index) in cards"
         :key="index"
+        tabindex="0"
         @click="openPopup('Великолепный клик!')"
+        @keyup.enter="openPopup('Великолепный клик!')"
         class="gallery__item"
         :class="{ 'is-hovered': isMobile }"
       >
-        <img :src="card.image" :alt="card.alt" class="gallery__item-img" />
+        <img
+          :src="card.image"
+          :alt="card.alt || 'Изображение без описания'"
+          loading="lazy"
+          class="gallery__item-img"
+        />
         <div class="gallery__item-overlay">
           <h4 class="gallery__item-title">{{ card.title }}</h4>
           <p class="gallery__item-text">{{ card.text }}</p>
@@ -136,5 +152,5 @@ const scrollRight = () => {
 </script>
 
 <style lang="scss">
-@use "@/assets/styles/components/gallery-slider.scss";
+@use "@/assets/styles/components/_gallery-slider.scss";
 </style>

@@ -7,7 +7,7 @@
 <script setup>
 import DefaultLayout from "@/layouts/DefaultLayout.vue";
 import HomePage from "@/pages/HomePage.vue";
-import "@/assets/styles/global.scss";
+import "@/assets/styles/_global.scss";
 </script>
 
 <style scoped></style>

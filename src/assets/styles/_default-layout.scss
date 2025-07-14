@@ -7,21 +7,22 @@
   min-height: 100vh;
   padding: 0.5rem 0.62rem 1rem;
 
-  @media (width >= 1200px) and (width <= 1319px) {
+  @media (min-width: 1200px) and (max-width: 1319px) {
     padding: 0.5rem 6vw 2rem;
   }
 
-  @media (width >= 1320px) {
+  @media (min-width: 1320px) {
     padding: 0.5rem 10vw 2rem;
   }
 
-  &__background_shapes {
+  &__background-shapes {
     position: absolute;
     z-index: 1;
     inset: 0;
     background-color: $color-light;
     pointer-events: none;
     user-select: none;
+    -webkit-user-select: none;
 
     &::after,
     &::before {
@@ -40,13 +41,13 @@
 
     &::after {
       top: 0;
-      background-image: url("@/assets/background-shape-top.webp");
+      background-image: url("/assets/background-shape.webp");
       background-position: 0% 0%;
     }
 
     &::before {
       top: 100%;
-      background-image: url("@/assets/background-shape-top.webp");
+      background-image: url("/assets/background-shape.webp");
       background-position: 0% 0%;
       transform: translateY(-21.7%);
     }
