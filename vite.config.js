@@ -4,6 +4,7 @@ import path from "path";
 import viteCompression from "vite-plugin-compression";
 
 export default defineConfig({
+  base: "/rocont-entry-task/",
   plugins: [vue(), viteCompression({ algorithm: "gzip" })],
   resolve: {
     alias: {
