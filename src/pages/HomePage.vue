@@ -119,7 +119,7 @@
         preload="auto"
         poster="/assets/hero-fallback-image.webp"
       >
-        <source src="/assets/hero-video.mp4" type="video/mp4" />
+        <source src="/assets/hero-video-compressed.mp4" type="video/mp4" />
         К сожалению, воспроизведение видео в Вашем браузере не поддерживается.
       </video>
     </div>
